@@ -1,0 +1,107 @@
+/*
+ * WALIA SOVEREIGN BUS MANAGER (v3.0.0)
+ * (c) 2025. Hardware Role Orchestration.
+ */
+
+import "sys/pcie";
+import "sys/nvme";
+import "sys/security";
+
+// 1. THE SOVEREIGN HARDWARE REGISTRY
+// A persistent inventory of the physical motherboard.
+@sql
+class PhysicalHardware {
+    var vendor_id;    // e.g. 0x8086 (Intel)
+    var device_id;
+    var class_type;   // [STORAGE | NETWORK | DISPLAY]
+    var bar0_address; // Physical MMIO Entry Point
+    var assigned_role; 
+    var is_active;
+}
+
+/**
+ * @brief THE UNIVERSAL DISCOVERY ENGINE
+ * 
+ * Logic:
+ * 1. Invokes the C-substrate PCI scanner (Phase 26.1).
+ * 2. Matches device signatures against the Sovereign Role Matrix.
+ * 3. Initializes the Platter Link for Storage Sovereignty.
+ */
+fun pci_manager_init() {
+    print ">> Walia Bus Manager: Commencing Universal Discovery Pass...";
+
+    // 1. PHYSICAL PROBE
+    // Direct bridge to the sys_pci_metal.c scanner.
+    var raw_devices = sys_pci_scan(max_count: 32);
+
+    for (device in raw_devices) {
+        // 2. COGNITIVE PATTERN MATCHING (Phase 17.4)
+        // We identify hardware based on Class and Subclass codes.
+        match (device.class_code, device.subclass) {
+            
+            // ROLE: NVMe STORAGE (0x01, 0x08)
+            (0x01, 0x08) => {
+                print "[IDENT] NVMe Persistent Storage Controller Found.";
+                setup_storage_identity(device);
+            }
+
+            // ROLE: NETWORK FABRIC (0x02, _)
+            (0x02, _) => {
+                print "[IDENT] High-Speed Network Interface Found.";
+                setup_network_identity(device);
+            }
+
+            // ROLE: LEGACY/UNKNOWN
+            _ => {
+                print "[IDENT] Auxiliary Device Detected: " + device.vendor_id;
+            }
+        }
+    }
+
+    print ">> Walia Bus Manager: Hardware Landscape Finalized.";
+}
+
+/**
+ * @brief STORAGE SOVEREIGNTY INITIALIZATION
+ */
+fun setup_storage_identity(dev) {
+    // 1. Register with Bit-Shield (Phase 23)
+    // We white-list the MMIO address of the NVMe controller.
+    sys_security_authorize_mmio(dev.bar[0]);
+
+    // 2. Physical Handover
+    // Call the NVMe Substrate (Phase 26.2) to establish the Platter Link.
+    sys_nvme_init(dev.bar[0]);
+
+    // 3. Persistent Registration
+    PhysicalHardware.add({
+        vendor_id:    dev.vendor_id,
+        device_id:    dev.device_id,
+        class_type:   "STORAGE",
+        bar0_address: dev.bar[0],
+        assigned_role: "SYSTEM_PMMO",
+        is_active:    true
+    });
+
+    // 4. Mount the Sovereign File System (Phase 24)
+    // The OS now has a persistent home for its logic.
+    sys_pmmo_init(); 
+    print ">> Walia OS: PMMO File System mounted on physical hardware.";
+}
+
+/**
+ * @brief NETWORK SOVEREIGNTY INITIALIZATION
+ */
+fun setup_network_identity(dev) {
+    PhysicalHardware.add({
+        vendor_id:    dev.vendor_id,
+        device_id:    dev.device_id,
+        class_type:   "NETWORK",
+        bar0_address: dev.bar[0],
+        assigned_role: "FABRIC_GATEWAY",
+        is_active:    true
+    });
+    
+    // Future: Initialize the Zero-Copy Network Stack
+    print ">> Walia OS: Network Fabric mapped to Sovereign Address Space.";
+}

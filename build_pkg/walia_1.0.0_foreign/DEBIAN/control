@@ -1,0 +1,9 @@
+Package: walia
+Version: 1.0.0
+Section: devel
+Priority: optional
+Architecture: foreign
+Maintainer: Sovereign Architect <dev@walia.io>
+Description: Persistent, Effect-Managed Sovereign Language & Database Substrate.
+ Walia is a data-sovereign language built for multi-trillion 
+ neuron AI and enterprise-grade persistent logic.

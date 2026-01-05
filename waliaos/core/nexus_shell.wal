@@ -1,0 +1,88 @@
+/*
+ * WALIA NEXUS SHELL (v3.0.0)
+ * (c) 2025. The Sovereign Operator Interface.
+ */
+
+import "sys/shell";
+import "sys/fs";
+import "tooling/nexus";
+
+// 1. PERSISTENT SHELL STATE
+// Your command history and environment variables are Walia Objects.
+@sql
+class ShellHistory {
+    var timestamp;
+    var command_text;
+    var result_status;
+}
+
+/**
+ * @brief THE MASTER SHELL LOOP
+ * 
+ * This is the primary entry point for the human operator.
+ */
+fun shell_main() {
+    print ">> Walia Sovereign Shell Online.";
+    print ">> Type 'help' for instructions.";
+
+    while (true) {
+        // 1. REAP INPUT (Bridge to C-Substrate Readline)
+        var raw_input = sys_shell_read_line("wal_os> ");
+        
+        if (raw_input == "" || raw_input == nil) continue;
+
+        // 2. DISPATCH (Search-Based Decision Tree)
+        match raw_input {
+            "help" => show_help(),
+            "ls"   => list_sovereign_nodes(),
+            "top"  => walia_nexus_show_lanes(), // Switch to Fabric View
+            "reboot" => asm { "out 0x64, 0xFE" }, // Reset hardware
+            
+            // DYNAMIC INSPECTION
+            cmd if cmd.starts_with("inspect ") => {
+                var target = cmd.split(" ").get(1);
+                inspect_sovereign_object(target);
+            }
+
+            // DEFAULT: Attempt to run as a Logic Block
+            _ => {
+                execute_sovereign_logic(raw_input);
+            }
+        }
+
+        // 3. COMMIT TO HISTORY
+        ShellHistory.add({
+            timestamp: sys_get_time(),
+            command_text: raw_input,
+            result_status: "SUCCESS"
+        });
+        
+        db_checkpoint(); // Ensure history persists
+    }
+}
+
+/**
+ * @brief Lists all persistent objects in the PMMO File System.
+ */
+fun list_sovereign_nodes() {
+    print "NAME             TYPE      HASH";
+    print "--------------------------------";
+    
+    // Direct Query into the Filesystem Sentry (Phase 24.3)
+    var nodes = db.SovereignNode.find(n => true);
+    for (node in nodes) {
+        print node.path + "    " + node.node_type + "    " + node.logic_hash;
+    }
+}
+
+/**
+ * @brief Evaluates raw Walia logic entered into the shell.
+ */
+fun execute_sovereign_logic(code) {
+    handle "LOGIC_ERROR" {
+        print "[ERROR] Sovereign Logic Violation in Shell input.";
+    }
+    
+    // UFO SPEED: JIT compile and execute in the current context
+    interpret(code);
+}
