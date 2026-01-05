@@ -1,0 +1,54 @@
+/*
+ * WALIA KERNEL SOUL (v3.0.0)
+ * (c) 2025. The Central Execution Organ.
+ */
+
+import "drivers/vga";
+import "drivers/serial";
+import "sys/governor";       // Phase 30.2
+import "core/scheduler_thermal"; // Phase 30.3
+import "core/pci_manager";   // Phase 26.3
+
+@sql
+class SystemRegistry {
+    var boot_count;
+    var active_drivers;
+    var kernel_lsn;
+}
+
+fun kernel_main() {
+    var registry = SystemRegistry.get(0);
+    registry.boot_count = registry.boot_count + 1;
+
+    print ">> Walia OS: Boot Cycle #" + registry.boot_count;
+    print ">> Status: SOVEREIGN_CORE_ACTIVE";
+
+    // 1. HARDWARE INTERCONNECT (Phase 26)
+    pci_manager_init();
+
+    // 2. IRON DOME: ACTIVATE METABOLISM (Phase 30)
+    print ">> Iron Dome: Initializing Thermal Governor...";
+    sys_governor_init();
+    sys_governor_set_policy(1); // MODE_BALANCED
+
+    // 3. SPAWN BACKGROUND DAEMONS
+    // These run as async tasks in the Multikernel Fabric
+    print ">> Walia OS: Spawning System Daemons...";
+    
+    // Thermal Scheduler (Heat Balancing)
+    task(run_thermal_balancer);
+    
+    // Memory Sentry (RAM Deduplication)
+    // import "core/memory_sentry";
+    // task(memory_sentry_main);
+
+    // 4. SECURITY HANDLER
+    handle "SECURITY_BREACH" {
+        print "[ALERT] Unauthorized Bit Mutation Detected.";
+        asm { "cli; hlt" }
+    }
+
+    // 5. LAUNCH OPERATOR SHELL
+    print "Entering Sovereign Command Nexus...";
+    walia_nexus_start();
+}

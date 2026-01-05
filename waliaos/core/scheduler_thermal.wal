@@ -1,0 +1,80 @@
+/* 
+ * WALIA THERMAL SCHEDULER (v3.0.0) 
+ * (c) 2025. Thermodynamic Workload Balancer. 
+ */ 
+
+import "sys/thermal"; 
+import "sys/topology"; 
+import "core/scheduler"; 
+import "tooling/nexus"; 
+
+// 1. THERMAL POLICY CONFIGURATION 
+const TEMP_MIGRATE_THRESHOLD = 75; // Celsius 
+const TEMP_EVACUATE_LIMIT    = 90; // Celsius 
+
+/** 
+ * @brief THE THERMODYNAMIC DAEMON 
+ * 
+ * Logic: 
+ * 1. Scans all CPU cores for temperature. 
+ * 2. Identifies 'Hotspots' (Cores > 75C). 
+ * 3. Identifies 'Heat Sinks' (Cores < 50C). 
+ * 4. Moves logic from Hot -> Cold. 
+ */ 
+async fun run_thermal_balancer() { 
+    print ">> Walia Thermal: Thermodynamic Load Balancing Active."; 
+
+    while (true) { 
+        var core_count = sys_topology_get_core_count(); 
+        
+        // 1. TELEMETRY GATHERING 
+        // We use a List to store the state of every core 
+        var core_states = List(); 
+        
+        for (i in 0..core_count) { 
+            var temp = sys_thermal_read(i); 
+            core_states.add({ id: i, temp: temp }); 
+            
+            // Visual Update to Nexus 
+            // (Payload: Top 8 bits = Temp, Bottom 8 bits = Load) 
+            walia_pulse_emit(PULSE_NEURAL_MATH, i, temp); 
+        } 
+
+        // 2. CRITICAL EVACUATION (Safety First) 
+        // Check for any core near the melting point 
+        var critical_cores = core_states 
+                          |> filter(c => c.temp >= TEMP_EVACUATE_LIMIT); 
+
+        for (core in critical_cores) { 
+            print "[ALERT] Core " + core.id + " Critical (" + core.temp + "C). Evacuating tasks."; 
+            
+            // Force-Migrate ALL tasks to neighbor 
+            // This bypasses the standard work-stealing and forces a push 
+            var neighbor = (core.id + 1) % core_count; 
+            scheduler_migrate_all(core.id, neighbor); 
+            
+            // Put the hot core to deep sleep via ACPI 
+            sys_governor_set_core_state(core.id, "SLEEP"); 
+        } 
+
+        // 3. THERMAL BALANCING (Optimization) 
+        // If we aren't critical, just optimize the spread 
+        if (critical_cores.length() == 0) { 
+            var hot_cores  = core_states |> filter(c => c.temp > TEMP_MIGRATE_THRESHOLD); 
+            var cool_cores = core_states |> filter(c => c.temp < 60); 
+
+            if (hot_cores.length() > 0 && cool_cores.length() > 0) { 
+                // Match the hottest core with the coolest core 
+                var source = hot_cores.first(); 
+                var dest   = cool_cores.first(); 
+
+                // Move 50% of the load 
+                print ">> Thermal: Cooling Core " + source.id + " -> Offloading to " + dest.id; 
+                scheduler_balance_load(source.id, dest.id, 0.5); 
+            } 
+        } 
+
+        // Run this check every 500ms (Slow tick relative to CPU) 
+        await sleep(500); 
+    } 
+} 
