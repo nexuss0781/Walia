@@ -1,0 +1,98 @@
+/*
+ * WALIA SOVEREIGN DEFENDER (v3.0.0)
+ * (c) 2025. The Executive Organ of the Immune System.
+ */
+
+import "sys/security";
+import "db/vector";
+import "tooling/nexus";
+
+// 1. IMMUNE MEMORY (The Threat Ledger)
+// Stored in WaliaDB to ensure the OS never forgets a threat.
+@sql
+class ThreatLedger {
+    var fault_hash;      // SHA-256 logic fingerprint of the offender
+    var detection_time;  // Physical timestamp from Superblock
+    var affected_page;   // PageID that was targeted
+    var risk_score;      // Calculated via Neural Analysis
+}
+
+/**
+ * @brief THE CENTRAL EXECUTION ORGAN
+ * 
+ * Logic:
+ * 1. Responds to the "SECURITY_BREACH" Algebraic Effect.
+ * 2. Identifies if the bits are 'Foreigners' or 'Corrupted Self'.
+ * 3. Triggers physical memory isolation.
+ */
+fun defender_init() {
+    print ">> Walia Defender: Central Execution Organ Initialized.";
+    print ">> Status: BIT_SHIELD_ACTIVE [Immune Mode]";
+
+    // The Global Immune Loop
+    handle "SECURITY_BREACH" {
+        // The 'breach' object contains the faulty memory address 
+        // and the actual bit-hash that failed validation.
+        var breach = perform "GET_BREACH_METADATA";
+
+        // 2. NEURAL THREAT ANALYSIS (Phase 17.4)
+        // We match the offending bit-pattern against known virus 
+        // signatures in the Vector Wing.
+        match breach.bit_vector {
+            ~ known_virus_pattern => {
+                print "[CRITICAL] Foreigner Attack: Malware Signature Confirmed.";
+                quarantine_and_isolate(breach);
+            }
+            ~ known_system_logic => {
+                print "[WARN] Self-Corruption: Logical Mutation Detected.";
+                restore_from_sovereign_history(breach);
+            }
+            _ => {
+                print "[ALERT] Zero-Day Foreigner: Unknown Logic Identity.";
+                quarantine_and_isolate(breach);
+            }
+        }
+    }
+}
+
+/**
+ * @brief Physical Isolation Routine.
+ * Communicates back to the C-substrate to cut power to the memory.
+ */
+fun quarantine_and_isolate(breach) {
+    // 1. Log to Persistent Immune Memory
+    var report = ThreatLedger.add({
+        fault_hash:    breach.bit_hash,
+        detection_time: sys_get_time(),
+        affected_page:  breach.page_id,
+        risk_score:     0.99
+    });
+
+    // 2. Visual Telemetry (Command Nexus Phase 10.3)
+    // Marks the tile as 'POISONED' (Red '#') in the PageMap.
+    walia_pulse_emit(PULSE_DB_PAGE_WRITE, breach.page_id, 0xDEAD);
+
+    // 3. ATOMIC REJECTION
+    // Calls the C-substrate gate (Phase 23.1) to physically 
+    // invalidate the Page Table entry for this core.
+    sys_security_isolate_segment(breach.physical_addr);
+
+    print ">> Walia OS: Foreigner Bits physically rejected. System Sovereign.";
+}
+
+/**
+ * @brief Self-Healing Protocol.
+ * Uses Phase 10.1 History to revert bits to a known-good state.
+ */
+fun restore_from_sovereign_history(breach) {
+    print ">> Walia Healer: Attempting atomic restoration of logic...";
+    
+    // Fetch the last verified Sovereign Hash for this node
+    var valid_bits = walia_history_get_content(breach.symbol_name);
+    
+    // Physically overwrite the corrupted segment with Sovereign Truth
+    ptr_write(breach.physical_addr, valid_bits);
+    
+    print ">> Walia OS: Logic restored. Self-healing complete.";
+    resume(); // Continue execution from before the breach
+}

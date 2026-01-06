@@ -1,0 +1,61 @@
+/*
+ * WALIA MEMORY SENTRY (v3.0.0)
+ * (c) 2025. The Infinite Memory Governor.
+ */
+
+import "sys/pager";
+import "sys/compress";
+import "tooling/nexus";
+
+// 1. PERSISTENT SENTRY STATE
+@sql
+class SentryMetrics {
+    var total_compressed_pages;
+    var physical_ram_reclaimed;
+    var average_compression_ratio;
+}
+
+/**
+ * @brief Background Metabolic Loop.
+ * Monitors the 'Temperature' of 524,288 physical RAM frames.
+ */
+async fun memory_sentry_main() {
+    var metrics = SentryMetrics.get(0);
+
+    while (true) {
+        // 1. SCAN: Iterate through the Sovereign Pager's Frame Table
+        // We use the Hyper-Pipe (Phase 17.3) for parallel assessment.
+        var cold_pages = sys_pager_get_all_frames() 
+                      |> parallel(8) 
+                      |> filter(f => f.is_cold == true && f.is_compressed == false);
+
+        for (page in cold_pages) {
+            // 2. SIMILARITY MATCHING (Phase 17.4)
+            // If this page is logically similar to another cold page, 
+            // we perform Delta-Compression.
+            match page.logic_hash {
+                ~ active_pattern => {
+                    // Page is part of a known cluster; compress it.
+                    var result_size = sys_compress_page_simd(page.addr);
+                    
+                    // 3. PHYSICAL RECLAMATION
+                    // The Pager updates the physical mapping to a 'Fragment'.
+                    sys_pager_fold_to_fragment(page.id, result_size);
+                    
+                    metrics.total_compressed_pages = metrics.total_compressed_pages + 1;
+                    metrics.physical_ram_reclaimed = metrics.physical_ram_reclaimed + (4096 - result_size);
+                }
+                _ => {
+                    // Unique data; standard compression pass.
+                    sys_compress_page_simd(page.addr);
+                }
+            }
+        }
+
+        // 4. TELEMETRY: Update the HeapTank in the Command Nexus
+        walia_pulse_emit(PULSE_GC_SWEEP, metrics.physical_ram_reclaimed, 0);
+
+        // Hibernate the sentry to save CPU cycles
+        await sleep(5000); 
+    }
+}
