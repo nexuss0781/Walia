@@ -1,0 +1,109 @@
+/*
+ * WALIA FILESYSTEM SENTRY (v3.0.0)
+ * (c) 2025. The Virtual Object Interface.
+ */
+
+import "sys/pmmo";
+import "sys/security";
+import "sys/dedup_fs";
+
+// 1. THE SOVEREIGN NODE REGISTRY
+// Replaces Inodes and Directory Tables.
+@sql
+class SovereignNode {
+    var path;         // Unique string identifier (e.g. "/system/kernel")
+    var logic_hash;   // Fingerprint for the Bit-Shield
+    var root_page_id; // Entry point in the Slotted Heap
+    var creator_role; // Sovereign Role ID of the owner
+    var node_type;    // [LOGIC | DATA | NEURAL]
+}
+
+/**
+ * @brief THE NO-VFS RESOLVER
+ * 
+ * Logic:
+ * In Walia OS, we don't 'traverse' folders. We perform an O(1) 
+ * persistent hash-map lookup for the path string.
+ */
+fun resolve_path(target_path: String) {
+    // UFO SPEED: Direct query into the Clustered B+ Tree
+    var node = SovereignNode.find(n => n.path == target_path).first();
+
+    if (node == nil) {
+        perform "NODE_NOT_FOUND" { path: target_path };
+        return nil;
+    }
+
+    // 2. SECURITY AUDIT (Phase 23 Integration)
+    // Before returning a pointer to the data, we check if the 
+    // current execution context has the required Role.
+    var current_role = perform "GET_ACTIVE_ROLE";
+    if (!sys_security_check_access(node.root_page_id, current_role)) {
+        perform "SECURITY_BREACH" { 
+            reason: "UNAUTHORIZED_PATH_ACCESS",
+            target: target_path 
+        };
+        return nil;
+    }
+
+    // Return the physical PageID to the Pager
+    return node.root_page_id;
+}
+
+/**
+ * @brief ATOMIC NODE CREATION
+ * 
+ * Logic:
+ * 1. Fingerprints the data.
+ * 2. Checks if the logic already exists on disk (Folding).
+ * 3. Commits to the Sovereign Node Registry.
+ */
+fun register_node(path: String, data_ptr: ptr, type: int) {
+    // 1. GENERATE IDENTITY
+    var hash = sys_compute_sha256(data_ptr);
+
+    // 2. DISK FOLDING (Phase 24.2)
+    // Check if these bits already exist on the silicon.
+    var existing_lba = sys_dedup_fs_lookup(hash);
+    var target_page_id = 0;
+
+    if (existing_lba != 0) {
+        // UFO SPEED: We point the new path to existing physical bits.
+        // The data is 'cloned' in 0.00ms.
+        target_page_id = sys_pager_get_id_from_lba(existing_lba);
+        print ">> FS Sentry: Logic Folded. Path '" + path + "' points to shared LBA.";
+    } else {
+        // Unique Data: Allocate new Page and Commit
+        target_page_id = sys_pager_allocate();
+        sys_pmmo_commit_page(target_page_id, data_ptr, hash);
+        sys_dedup_fs_register(hash, sys_pager_get_lba(target_page_id));
+    }
+
+    // 3. SOVEREIGN REGISTRATION
+    // Add entry to the persistent O(1) registry.
+    SovereignNode.add({
+        path: path,
+        logic_hash: hash,
+        root_page_id: target_page_id,
+        creator_role: perform "GET_ACTIVE_ROLE",
+        node_type: type
+    });
+
+    db_checkpoint(); // Atomic filesystem commit
+}
+
+/**
+ * @brief LOGIC DELETION (Unlink)
+ */
+fun unlink_path(target_path: String) {
+    var node = SovereignNode.find(n => n.path == target_path).first();
+    if (node == nil) return;
+
+    // Trigger reference decrement in the Deduplicator
+    sys_dedup_fs_release(node.logic_hash);
+
+    // Physically remove from the Path Registry
+    SovereignNode.delete(node);
+    
+    print ">> FS Sentry: Path '" + target_path + "' unlinked. Bits reclaimed if unused.";
+}

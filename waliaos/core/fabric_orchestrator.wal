@@ -1,0 +1,80 @@
+/*
+ * WALIA FABRIC ORCHESTRATOR (v3.0.0)
+ * (c) 2025. The Brain of the Multikernel.
+ */
+
+import "sys/topology";
+import "sys/fabric";
+import "sys/effects";
+
+// 1. FABRIC KNOWLEDGE
+var core_count = sys_topology_get_core_count();
+
+/**
+ * @brief THE MPP SHARDER
+ * 
+ * Logic:
+ * 1. Takes a massive collection (e.g. Quadrillion-scale Table).
+ * 2. Calculates the 'Logic Shards' based on physical Core Count.
+ * 3. Dispatches Wait-Free Pulses to all Fabric Nodes.
+ */
+fun parallel_dispatch(collection, logic_closure) {
+    var total_pages = collection.page_count();
+    var pages_per_shard = total_pages / core_count;
+
+    print ">> Fabric: Partitioning " + total_pages + " pages across " + core_count + " cores.";
+
+    for (i in 0..core_count) {
+        // Create a 'Shard Task' (Phase 10.4 Continuation)
+        // This task knows exactly which range of the persistent heap to scan.
+        var task = fun() {
+            var start = i * pages_per_shard;
+            var end   = (i + 1) * pages_per_shard;
+            
+            // Execute the user's logic over the physical segment
+            collection.scan_segment(start, end, logic_closure);
+        };
+
+        // UFO SPEED: Send the logic to the target core's hardware mailbox.
+        // No thread-creation overhead. Direct atomic pulse.
+        sys_fabric_send(i, FABRIC_PULSE_EXEC, task);
+    }
+}
+
+/**
+ * @brief THE WORK-STEALING SENTRY
+ * 
+ * Logic:
+ * This function runs on every core during its 'Idle' tick.
+ * It proactively searches for work in neighboring mailboxes.
+ */
+fun fabric_idle_loop() {
+    while (true) {
+        // 1. REAP LOCAL MAILBOX
+        var incoming = sys_fabric_reap(max_count: 10);
+        
+        if (incoming.length > 0) {
+            for (pulse in incoming) {
+                if (pulse.type == FABRIC_PULSE_EXEC) {
+                    // RESUME: The logic arrives as a persistent continuation.
+                    resume(pulse.payload); 
+                }
+            }
+        } else {
+            // 2. ADAPTIVE STEALING (If I am empty, find a busy neighbor)
+            var victim = (sys_get_current_core() + 1) % core_count;
+            
+            // Probe neighbor's mailbox atomically
+            var stolen_task = sys_fabric_steal(victim);
+            
+            if (stolen_task != nil) {
+                print ">> Fabric: Core " + sys_get_current_core() + " stole task from Core " + victim;
+                resume(stolen_task);
+            } else {
+                // 3. POWER SOVEREIGNTY
+                // No work anywhere. Sleep CPU to reduce heat/power.
+                asm { "hlt" }
+            }
+        }
+    }
+}

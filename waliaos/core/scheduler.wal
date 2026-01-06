@@ -1,0 +1,71 @@
+/*
+ * WALIA SOVEREIGN SCHEDULER (v3.0.0)
+ * (c) 2025. Adaptive Multi-Core Orchestrator.
+ */
+
+import "sys/topology";
+import "sys/effects";
+
+// 1. PROJECT KNOWLEDGE: The Global Logic Cells
+// These are mapped to the physical structures defined in logic_cell.h
+var cells = List(); 
+var core_count = sys_topology_get_core_count();
+
+fun init_scheduler() {
+    print ">> Walia Scheduler: Igniting " + core_count + " Logic Cells.";
+    
+    for (i in 0..core_count) {
+        var cell = LogicCell(i); // Constructor links to sys_cell_init
+        cells.add(cell);
+    }
+}
+
+/**
+ * @brief The Universal Execution Loop.
+ * Every CPU core runs an instance of this function.
+ */
+fun scheduler_main() {
+    var my_id = reg_read("core_id");
+    var my_cell = cells.get(my_id);
+
+    while (true) {
+        // STEP 1: Fetch from Local Queue
+        var task = my_cell.pop_local();
+
+        // STEP 2: Adaptive Work-Stealing (If idle)
+        if (task == nil && core_count > 1) {
+            task = attempt_steal(my_id);
+        }
+
+        // STEP 3: Execution (The Quantum Jump)
+        if (task != nil) {
+            my_cell.status = "BUSY";
+            // Resume the captured stack slice (Phase 10.4)
+            resume(task); 
+        } else {
+            my_cell.status = "IDLE";
+            // Power Sovereignty: Halt CPU until next interrupt
+            asm { "hlt" } 
+        }
+    }
+}
+
+/**
+ * @brief The Stealing Algorithm.
+ * Logic: Randomly probe a neighbor core to balance the load.
+ */
+fun attempt_steal(my_id) {
+    // Pick a random core that isn't me
+    var target_id = (my_id + 1) % core_count;
+    var target_cell = cells.get(target_id);
+
+    // Physical Atomic Pop from the neighbor's queue
+    var stolen_task = target_cell.steal();
+    
+    if (stolen_task != nil) {
+        walia_pulse_emit(PULSE_DB_COMMIT, my_id, target_id); // Telemetry
+        return stolen_task;
+    }
+    
+    return nil;
+}

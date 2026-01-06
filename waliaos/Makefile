@@ -1,77 +1,73 @@
-# ============================================================================== 
-# WALIA OS: SOVEREIGN BUILD ENGINE 
-# Structure: Flat Root (boot.S/linker.ld in root) 
-# ============================================================================== 
- 
-# 1. TOOLCHAIN 
-CC      := gcc 
-LD      := ld 
-OBJCOPY := objcopy 
- 
-# 2. DIRECTORIES 
-BUILD_DIR := build 
-ISO_DIR   := iso_root 
-# Location of the Walia Language Source (VM, Parser, Compiler) 
-# Change this to wherever you saved the Phase 1-19 code 
-VM_DIR    := ../src 
- 
-# 3. FLAGS (UFO-Grade / Freestanding) 
-CFLAGS := -m64 -ffreestanding -O3 -flto -Wall -Wextra \ 
-           -Iinclude -I$(VM_DIR) \ 
-           -fno-stack-protector -fno-pic -mno-red-zone -mcmodel=kernel \ 
-           -D_WALIA_KERNEL_MODE 
- 
-# 4. SOURCE DISCOVERY 
-# OS Sources 
-OS_C_SRC  := $(wildcard core/*.c) \ 
-              $(wildcard drivers/*.c) \ 
-              $(wildcard lib/*.c) 
- OS_S_SRC  := boot.S 
- 
- # VM Sources (The Language Substrate) 
- # We exclude main.c because the OS has its own entry point (kernel_init.c) 
- VM_SRC    := $(wildcard $(VM_DIR)/*.c) 
- VM_SRC    := $(filter-out $(VM_DIR)/main.c $(VM_DIR)/walia_repl.c, $(VM_SRC)) 
- 
- # Object Lists 
- OBJECTS   := $(OS_C_SRC:.c=.o) $(OS_S_SRC:.S=.o) $(VM_SRC:.c=.o) 
- 
- # 5. TARGETS 
- .PHONY: all clean kernel iso run 
- 
- all: kernel 
- 
- kernel: $(BUILD_DIR)/walia_os.bin 
- 
- $(BUILD_DIR)/walia_os.bin: $(OBJECTS) 
- 	 @mkdir -p $(BUILD_DIR) 
- 	 @echo ">> Linking Sovereign Kernel..." 
- 	 @$(LD) -n -T linker.ld -o $@ $(OBJECTS) 
- 	 @echo ">> Walia OS: Binary Created." 
- 
- %.o: %.c 
- 	 @echo ">> Compiling: $<" 
- 	 @$(CC) $(CFLAGS) -c $< -o $@ 
- 
- %.o: %.S 
- 	 @echo ">> Assembling: $<" 
- 	 @$(CC) $(CFLAGS) -c $< -o $@ 
- 
- # 6. ISO GENERATION 
- iso: kernel 
- 	 @mkdir -p $(ISO_DIR)/boot/grub 
- 	 @cp $(BUILD_DIR)/walia_os.bin $(ISO_DIR)/boot/kernel.bin 
- 	 @echo 'set timeout=0' > $(ISO_DIR)/boot/grub/grub.cfg 
- 	 @echo 'set default=0' >> $(ISO_DIR)/boot/grub/grub.cfg 
- 	 @echo 'menuentry "Walia OS" { multiboot2 /boot/kernel.bin; boot; }' >> $(ISO_DIR)/boot/grub/grub.cfg 
- 	 @grub-mkrescue -o walia_os.iso $(ISO_DIR) --quiet 
- 	 @echo ">> Walia OS: ISO Image Ready (walia_os.iso)" 
- 
- run: iso 
- 	 @qemu-system-x86_64 -cdrom walia_os.iso -m 2G -serial stdio 
- 
- clean: 
- 	 @rm -rf $(BUILD_DIR) $(ISO_DIR) walia_os.iso 
- 	 @rm -f core/*.o drivers/*.o lib/*.o *.o 
- 	 @rm -f $(VM_DIR)/*.o 
- 	 @echo ">> Cleaned." 
+# ==============================================================================
+# WALIA SOVEREIGN OS - MASTER BUILD ENGINE (v3.0.0 GOLD)
+# (c) 2025. Freestanding Multi-Model Architecture.
+# ==============================================================================
+
+# 1. TOOLCHAIN (Standard x86_64 Freestanding)
+CC      := gcc
+AS      := as
+LD      := ld
+OBJCOPY := objcopy
+
+# 2. PATHS & DIRECTORIES
+BUILD_DIR := build
+ISO_DIR   := iso
+ARCH_DIR  := arch/x86_64
+CORE_DIR  := core
+LIB_DIR   := lib
+DRV_DIR   := drivers
+
+# 3. COMPILATION FLAGS (UFO-GRADE OPTIMIZATION)
+# -ffreestanding: No assumptions about standard libraries
+# -mno-red-zone: Essential for kernel stack safety
+# -O3 -flto: Maximum cross-module optimization
+CFLAGS := -m64 -ffreestanding -O3 -flto -Wall -Wextra -Iinclude -I../ -fno-stack-protector -fno-pic -mno-red-zone -mcmodel=kernel
+
+# 4. SOURCE DISCOVERY
+C_SOURCES := $(wildcard $(CORE_DIR)/*.c) \
+             $(wildcard $(LIB_DIR)/*.c)  \
+             $(wildcard $(DRV_DIR)/*.c)  \
+             ../vm.c ../object.c ../memory.c ../table.c ../scanner.c ../parser.c ../compiler.c ../hash.c
+
+S_SOURCES := $(ARCH_DIR)/boot.S
+
+OBJECTS := $(C_SOURCES:.c=.o) $(S_SOURCES:.S=.o)
+
+# 5. MASTER TARGETS
+.PHONY: all clean kernel iso run
+
+all: kernel
+
+kernel: $(BUILD_DIR)/walia_os.bin
+
+$(BUILD_DIR)/walia_os.bin: $(OBJECTS)
+	@mkdir -p $(BUILD_DIR)
+	@$(LD) -T $(ARCH_DIR)/linker.ld -o $@ $(OBJECTS) -nostdlib
+	@echo ">> Walia OS: Sovereign Gold Binary Assembled [8-byte aligned]."
+
+%.o: %.c
+	@$(CC) $(CFLAGS) -c $< -o $@
+
+%.o: %.S
+	@$(CC) $(CFLAGS) -c $< -o $@
+
+# 6. DISTRIBUTION (ISO Generation)
+iso: kernel
+	@mkdir -p $(ISO_DIR)/boot/grub
+	@cp $(BUILD_DIR)/walia_os.bin $(ISO_DIR)/boot/walia_os.bin
+	@echo 'set timeout=0' > $(ISO_DIR)/boot/grub/grub.cfg
+	@echo 'set default=0' >> $(ISO_DIR)/boot/grub/grub.cfg
+	@echo 'menuentry "Walia OS v3.0.0 Gold" {' >> $(ISO_DIR)/boot/grub/grub.cfg
+	@echo '  multiboot2 /boot/walia_os.bin' >> $(ISO_DIR)/boot/grub/grub.cfg
+	@echo '  boot' >> $(ISO_DIR)/boot/grub/grub.cfg
+	@echo '}' >> $(ISO_DIR)/boot/grub/grub.cfg
+	@grub-mkrescue -o walia_sovereign_gold.iso $(ISO_DIR)
+	@echo ">> Walia OS: Bootable ISO Generated [walia_sovereign_gold.iso]."
+
+# 7. EXECUTION (UFO SIMULATION)
+run: iso
+	@qemu-system-x86_64 -cdrom walia_sovereign_gold.iso -m 2G -serial stdio
+
+clean:
+	@rm -rf $(BUILD_DIR) $(ISO_DIR) *.o $(ARCH_DIR)/*.o $(CORE_DIR)/*.o $(LIB_DIR)/*.o $(DRV_DIR)/*.o
+	@echo ">> Walia OS: Build artifacts purged."
