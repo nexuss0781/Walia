@@ -1,6 +1,7 @@
 #include "../include/sys_topology.h"
 #include "../include/walia_kernel_base.h"
 #include "../include/driver_serial.h"
+#include <string.h>
 
 // Global Singleton
 static WldCoreMap global_core_map;
@@ -40,7 +41,7 @@ typedef struct {
 static RSDPDescriptor* find_rsdp() {
     uint8_t* ptr = (uint8_t*)0xE0000;
     while ((uintptr_t)ptr < 0x100000) {
-        if (k_memcpy(ptr, "RSD PTR ", 8) == 0) { // Using our k_memcpy for comparison
+        if (strncmp((char*)ptr, "RSD PTR ", 8) == 0) { // Fixed: Use strncmp for comparison
             // Checksum validation would happen here
             return (RSDPDescriptor*)ptr;
         }

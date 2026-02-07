@@ -1,8 +1,8 @@
 #include "../include/sys_security.h"
 #include "../include/walia_kernel_base.h"
 #include "../include/driver_serial.h"
-#include "object.h"
-#include "compiler.h"
+#include "core/object.h"
+#include "core/compiler.h"
 
 // ==========================================
 // SOVEREIGN LOGIC AUDIT

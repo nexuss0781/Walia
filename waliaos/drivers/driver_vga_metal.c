@@ -1,6 +1,6 @@
 #include "driver_vga.h"
 
-static uint16_t* const VGA_MEM = (uint16_t*)VGA_MEM_ADDR;
+static uint16_t* const VGA_MEM = (uint16_t*)VGA_BUFFER_ADDR;
 static uint8_t  current_color = 0x07;
 static uint16_t cursor_x = 0;
 static uint16_t cursor_y = 0;
@@ -10,8 +10,8 @@ void k_vga_init() {
     k_vga_clear();
 }
 
-void k_vga_set_color(uint8_t fg, uint8_t bg) {
-    current_color = fg | (bg << 4);
+void k_vga_set_color(WldVgaColor fg, WldVgaColor bg) {
+    current_color = (uint8_t)fg | ((uint8_t)bg << 4);
 }
 
 void k_vga_clear() {

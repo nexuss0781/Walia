@@ -27,9 +27,9 @@ CFLAGS := -m64 -ffreestanding -O3 -flto -Wall -Wextra -Iinclude -I../ -fno-stack
 C_SOURCES := $(wildcard $(CORE_DIR)/*.c) \
              $(wildcard $(LIB_DIR)/*.c)  \
              $(wildcard $(DRV_DIR)/*.c)  \
-             ../vm.c ../object.c ../memory.c ../table.c ../scanner.c ../parser.c ../compiler.c ../hash.c
+             ../src/core/vm.c ../src/core/object.c ../src/core/memory.c ../src/core/table.c ../src/core/scanner.c ../src/core/parser.c ../src/core/compiler.c ../src/core/hash.c
 
-S_SOURCES := $(ARCH_DIR)/boot.S
+S_SOURCES := boot.S
 
 OBJECTS := $(C_SOURCES:.c=.o) $(S_SOURCES:.S=.o)
 
@@ -42,7 +42,7 @@ kernel: $(BUILD_DIR)/walia_os.bin
 
 $(BUILD_DIR)/walia_os.bin: $(OBJECTS)
 	@mkdir -p $(BUILD_DIR)
-	@$(LD) -T $(ARCH_DIR)/linker.ld -o $@ $(OBJECTS) -nostdlib
+	@$(LD) -T linker.ld -o $@ $(OBJECTS) -nostdlib
 	@echo ">> Walia OS: Sovereign Gold Binary Assembled [8-byte aligned]."
 
 %.o: %.c

@@ -5,8 +5,10 @@
 #include "../include/sys_security.h"
 #include "../include/driver_vga.h"
 #include "../include/sys_fabric.h"
-#include "vm.h"
-#include "db_pool.h"
+#include "../include/sys_block_device.h"
+#include "../include/sys_pmmo.h"
+#include "core/vm.h"
+#include "db/db_pool.h"
 
 /**
  * @brief THE SOVEREIGN IGNITION (v3.0.0 Gold)
@@ -18,6 +20,7 @@
  * 4. Logic Fusion: Launch the Walia VM on the Parallel Fabric.
  */
 void walia_os_ignite(uint32_t magic, uint32_t addr) {
+    (void)magic; (void)addr;
     // 1. HARDWARE HANDOVER
     k_vga_init();
     k_vga_set_color(VGA_CYAN, VGA_BLACK);

@@ -56,6 +56,7 @@ void sys_ahci_init(uintptr_t bar5) {
 // ==========================================
 
 bool sys_ahci_read(int portIdx, uint64_t lba, uint16_t count, void* buf) {
+    (void)lba; (void)count; (void)buf; // Suppress unused for phase 1 implementation
     HbaPort* port = &hba_mem->ports[portIdx];
     
     // 1. Allocate Command Slot
@@ -90,6 +91,7 @@ bool sys_ahci_read(int portIdx, uint64_t lba, uint16_t count, void* buf) {
 }
 
 bool sys_ahci_write(int portIdx, uint64_t lba, uint16_t count, void* buf) {
+    (void)portIdx; (void)lba; (void)count; (void)buf;
     // Implementation mirror of sys_ahci_read with FIS direction bit set.
     return true; 
 }
