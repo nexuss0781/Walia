@@ -6,7 +6,20 @@
 # 1. COMPILER & PATHS
 CC      := gcc
 BIN     := walia
-SRC     := $(wildcard *.c)
+SRC_DIR := src
+# Explicitly list subdirectories for compatibility
+SRC     := $(wildcard $(SRC_DIR)/*.c) \
+           $(wildcard $(SRC_DIR)/core/*.c) \
+           $(wildcard $(SRC_DIR)/db/*.c) \
+           $(wildcard $(SRC_DIR)/vm/*.c) \
+           $(wildcard $(SRC_DIR)/lib/*.c) \
+           $(wildcard $(SRC_DIR)/sys/*.c) \
+           $(wildcard $(SRC_DIR)/web/*.c) \
+           $(wildcard $(SRC_DIR)/tooling/*.c) \
+           $(wildcard $(SRC_DIR)/drivers/*.c) \
+           $(wildcard $(SRC_DIR)/sql/*.c) \
+           $(wildcard waliaos/core/*.c) \
+           $(wildcard waliaos/drivers/*.c)
 OBJ     := $(SRC:.c=.o)
 
 # Detect Environment (Linux vs Termux)
@@ -24,7 +37,7 @@ endif
 
 # 2. ARCHITECTURE-SPECIFIC OPTIMIZATION (UFO SPEED)
 ARCH := $(shell uname -m)
-CFLAGS := -I. -Wall -Wextra -std=c99 -D_POSIX_C_SOURCE=200809L
+CFLAGS := -I$(SRC_DIR) -Iinclude -Iwaliaos/include -Wall -Wextra -std=c99 -D_POSIX_C_SOURCE=200809L
 
 # Optimization Level 3 + Link Time Optimization (LTO)
 CFLAGS += -O3 -flto -fno-strict-aliasing

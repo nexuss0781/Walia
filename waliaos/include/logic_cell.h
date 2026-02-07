@@ -2,7 +2,7 @@
 #define WALIA_LOGIC_CELL_H
 
 #include "walia_kernel_base.h"
-#include "value.h"
+#include "core/value.h"
 
 // ==========================================
 // CELL SPECIFICATIONS

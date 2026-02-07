@@ -1,4 +1,4 @@
-/#ifndef WALIA_SYS_PAGER_PHYS_H
+#ifndef WALIA_SYS_PAGER_PHYS_H
 #define WALIA_SYS_PAGER_PHYS_H
 
 #include "walia_kernel_base.h"

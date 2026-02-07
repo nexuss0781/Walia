@@ -18,6 +18,7 @@ extern uint64_t _kernel_end;
  * @brief The Sovereign Bridge.
  */
 void walia_kernel_init(uint32_t magic, uint32_t addr) {
+    (void)addr;
     // 1. INITIALIZE HARDWARE INTERFACES
     k_vga_init();
     k_serial_init();

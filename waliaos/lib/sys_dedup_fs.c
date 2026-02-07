@@ -1,7 +1,7 @@
 #include "../include/sys_dedup_fs.h"
 #include "../include/sys_pmmo.h"
 #include "../include/driver_serial.h"
-#include "db_btree.h" // Reuse the B+ Tree logic from Phase 2
+#include "../../src/db/db_btree.h" // Reuse the B+ Tree logic from Phase 2
 
 // Global handle to the persistent index
 static WldBTree* global_dedup_tree;
