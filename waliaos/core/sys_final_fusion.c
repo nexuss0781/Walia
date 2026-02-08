@@ -7,8 +7,8 @@
 #include "../include/sys_fabric.h"
 #include "../include/sys_block_device.h"
 #include "../include/sys_pmmo.h"
-#include "../src/core/vm.h"
-#include "../src/db/db_pool.h"
+#include "src/core/vm.h"
+#include "src/db/db_pool.h"
 
 /**
  * @brief THE SOVEREIGN IGNITION (v3.0.0 Gold)

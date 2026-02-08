@@ -4,7 +4,10 @@
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
+
+#ifndef WALIA_KERNEL
 #include <stdio.h>
+#endif
 
 // ==========================================
 // GLOBAL STATE FLAGS
@@ -16,7 +19,7 @@ extern bool hadError;
 #define UNUSED(x) (void)(x)
 
 // Enterprise System Versions
-#define WLD_VERSION 120 
+#define WLD_VERSION 120
 #define WLD_PAGE_SIZE 4096
 
 typedef enum {
