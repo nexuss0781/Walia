@@ -18,14 +18,18 @@ LIB_DIR   := lib
 DRV_DIR   := drivers
 
 # 3. COMPILATION FLAGS (UFO-GRADE OPTIMIZATION)
-CFLAGS := -m32 -ffreestanding -O3 -Wall -Wextra -Iinclude -I../ -fno-stack-protector -fno-pic -mno-red-zone
+CFLAGS := -m32 -ffreestanding -O3 -Wall -Wextra -Iinclude/libc -Iinclude -I../ -fno-stack-protector -fno-pic -mno-red-zone -DWALIA_KERNEL
 LDFLAGS := -m32 -nostdlib -T linker.ld
 
 # 4. SOURCE DISCOVERY & OBJECT MAPPING
 CORE_SOURCES := $(wildcard $(CORE_DIR)/*.c)
 LIB_SOURCES  := $(wildcard $(LIB_DIR)/*.c)
 DRV_SOURCES  := $(wildcard $(DRV_DIR)/*.c)
-SHARED_SOURCES := ../src/core/vm.c ../src/core/object.c ../src/core/memory.c ../src/core/table.c ../src/core/scanner.c ../src/core/parser.c ../src/core/compiler.c ../src/core/hash.c
+SHARED_SOURCES := ../src/core/vm.c ../src/core/object.c ../src/core/memory.c ../src/core/table.c ../src/core/scanner.c ../src/core/parser.c ../src/core/compiler.c ../src/core/hash.c \
+                 ../src/core/ast.c ../src/core/chunk.c ../src/core/value.c \
+                 ../src/sys/sys_layout.c ../src/sys/sys_types.c ../src/sys/sys_units_registry.c \
+                 ../src/sys/sys_units_check.c ../src/sys/sys_units_math.c ../src/sys/sys_assembler.c \
+                 ../src/compiler_pipe.c ../src/db/db_sentry_parser.c
 S_SOURCES := boot.S
 
 # Map sources to the local build directory to avoid clashing with host build
@@ -60,8 +64,20 @@ $(BUILD_DIR)/obj/%.o: $(DRV_DIR)/%.c
 	@mkdir -p $(BUILD_DIR)/obj
 	@$(CC) $(CFLAGS) -c $< -o $@
 
-# Rules for shared sources in ../src/core/
+# Rules for shared sources in ../src/
 $(BUILD_DIR)/obj/%.o: ../src/core/%.c
+	@mkdir -p $(BUILD_DIR)/obj
+	@$(CC) $(CFLAGS) -c $< -o $@
+
+$(BUILD_DIR)/obj/%.o: ../src/sys/%.c
+	@mkdir -p $(BUILD_DIR)/obj
+	@$(CC) $(CFLAGS) -c $< -o $@
+
+$(BUILD_DIR)/obj/%.o: ../src/db/%.c
+	@mkdir -p $(BUILD_DIR)/obj
+	@$(CC) $(CFLAGS) -c $< -o $@
+
+$(BUILD_DIR)/obj/%.o: ../src/%.c
 	@mkdir -p $(BUILD_DIR)/obj
 	@$(CC) $(CFLAGS) -c $< -o $@
 
