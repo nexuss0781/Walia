@@ -1,7 +1,7 @@
 #ifndef WALIA_TOOLING_NEXUS_WIDGETS_H
 #define WALIA_TOOLING_NEXUS_WIDGETS_H
 
-#include "tooling/tooling_nexus_canvas.h"
+#include "../tooling/tooling_nexus_canvas.h"
 
 // ==========================================
 // WIDGET DATA STRUCTURES

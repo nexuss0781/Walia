@@ -2,9 +2,9 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "tooling/tooling_ledger.h"
-#include "tooling/tooling_registry.h"
-#include "core/memory.h"
+#include "../tooling/tooling_ledger.h"
+#include "../tooling/tooling_registry.h"
+#include "../core/memory.h"
 
 // Global Ledger Singleton
 static WaliaDiagnosticLedger masterLedger;

@@ -2,11 +2,11 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "web/web_proxy.h"
-#include "core/memory.h"
-#include "core/vm.h"
-#include "core/table.h"
-#include "web/web_surface.h" // For UI element awareness
+#include "../web/web_proxy.h"
+#include "../core/memory.h"
+#include "../core/vm.h"
+#include "../core/table.h"
+#include "../web/web_surface.h" // For UI element awareness
 
 // ==========================================
 // PROXY LIFECYCLE

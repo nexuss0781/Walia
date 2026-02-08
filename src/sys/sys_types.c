@@ -1,7 +1,7 @@
 #include <string.h>
 #include <stdio.h>
 
-#include "sys/sys_types.h"
+#include "../sys/sys_types.h"
 
 // ==========================================
 // TYPE REGISTRY

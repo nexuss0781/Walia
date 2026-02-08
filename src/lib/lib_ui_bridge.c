@@ -2,15 +2,15 @@
 #include <string.h>
 #include <stdlib.h>
 
-#include "core/common.h"
-#include "core/object.h"
-#include "core/value.h"
-#include "core/vm.h"
-#include "native.h"
-#include "web/web_surface.h"
-#include "web/web_raster_tiler.h"
-#include "web/web_font_sdf.h"
-#include "db/db_dispatch.h"
+#include "../core/common.h"
+#include "../core/object.h"
+#include "../core/value.h"
+#include "../core/vm.h"
+#include "../native.h"
+#include "../web/web_surface.h"
+#include "../web/web_raster_tiler.h"
+#include "../web/web_font_sdf.h"
+#include "../db/db_dispatch.h"
 
 // External Substrate References
 // (Now resolved via headers)

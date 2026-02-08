@@ -1,10 +1,10 @@
 #ifndef WALIA_LIB_ASYNC_ORCHESTRATOR_H
 #define WALIA_LIB_ASYNC_ORCHESTRATOR_H
 
-#include "core/common.h"
-#include "core/object.h"
-#include "core/value.h"
-#include "vm/vm_async_core.h"
+#include "../core/common.h"
+#include "../core/object.h"
+#include "../core/value.h"
+#include "../vm/vm_async_core.h"
 #include <stdatomic.h>
 
 // ==========================================

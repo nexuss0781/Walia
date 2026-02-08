@@ -1,9 +1,9 @@
 #ifndef WALIA_LIB_ITERATOR_H
 #define WALIA_LIB_ITERATOR_H
 
-#include "core/common.h"
-#include "core/value.h"
-#include "core/object.h"
+#include "../core/common.h"
+#include "../core/value.h"
+#include "../core/object.h"
 
 // ==========================================
 // NATIVE ITERATOR STRUCTURES

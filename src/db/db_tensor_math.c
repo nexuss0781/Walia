@@ -3,10 +3,10 @@
 #include <stdbool.h>
 
 #include "db_tensor_math.h"
-#include "lib/lib_tensor_core.h"
+#include "../lib/lib_tensor_core.h"
 #include "db_vector_math.h"
 #include "../core/memory.h"
-#include "tooling/tooling_nexus_probes.h"
+#include "../tooling/tooling_nexus_probes.h"
 
 // Hardware Intrinsics
 #if defined(__x86_64__)

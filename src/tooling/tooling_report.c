@@ -2,10 +2,10 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "tooling/tooling_report.h"
-#include "tooling/tooling_ui.h"
-#include "tooling/tooling_ledger.h"
-#include "tooling/tooling_registry.h"
+#include "../tooling/tooling_report.h"
+#include "../tooling/tooling_ui.h"
+#include "../tooling/tooling_ledger.h"
+#include "../tooling/tooling_registry.h"
 
 // ==========================================
 // IMPACT ANALYSIS (The Ripple Engine)

@@ -1,17 +1,17 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "db/db_common.h"
-#include "db/db_vector.h"
-#include "db/db_hnsw.h"
-#include "db/db_quantize.h"
-#include "db/db_neural_stream.h"
-#include "db/db_catalog.h"
-#include "core/vm.h"
-#include "core/object.h"
+#include "../db/db_common.h"
+#include "../db/db_vector.h"
+#include "../db/db_hnsw.h"
+#include "../db/db_quantize.h"
+#include "../db/db_neural_stream.h"
+#include "../db/db_catalog.h"
+#include "../core/vm.h"
+#include "../core/object.h"
 
-#include "db/db_pool.h"
-#include "native.h"
+#include "../db/db_pool.h"
+#include "../native.h"
 
 // External substrate references
 // (Now resolved via headers)

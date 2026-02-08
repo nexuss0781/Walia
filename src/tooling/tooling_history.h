@@ -1,8 +1,8 @@
 #ifndef WALIA_TOOLING_HISTORY_H
 #define WALIA_TOOLING_HISTORY_H
 
-#include "core/common.h"
-#include "tooling/tooling_registry.h"
+#include "../core/common.h"
+#include "../tooling/tooling_registry.h"
 
 // ==========================================
 // HISTORY CONFIGURATION

@@ -1,12 +1,12 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "vm/vm_pager_link.h"
-#include "db/db_slotted.h"
-#include "db/db_pool.h"
-#include "core/memory.h"
-#include "core/vm.h"
-#include "db/db_sentry_mapper.h"
+#include "../vm/vm_pager_link.h"
+#include "../db/db_slotted.h"
+#include "../db/db_pool.h"
+#include "../core/memory.h"
+#include "../core/vm.h"
+#include "../db/db_sentry_mapper.h"
 
 // External access to the shared database resources
 extern WldBufferPool global_pool;

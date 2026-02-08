@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "vm/vm_sys_ops.h"
-#include "sys/sys_types.h"
+#include "../vm/vm_sys_ops.h"
+#include "../sys/sys_types.h"
 
 // ==========================================
 // RAW STACK MANIPULATION

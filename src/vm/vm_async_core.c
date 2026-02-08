@@ -1,12 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "vm/vm_async_core.h"
-#include "core/memory.h"
-#include "core/vm.h"
-#include "effect.h"
-#include "tooling/tooling_nexus_bus.h"
-#include "lib/lib_async_orchestrator.h"
+#include "../vm/vm_async_core.h"
+#include "../core/memory.h"
+#include "../core/vm.h"
+#include "../effect.h"
+#include "../tooling/tooling_nexus_bus.h"
+#include "../lib/lib_async_orchestrator.h"
 
 // ==========================================
 // FUTURE LIFECYCLE

@@ -1,9 +1,9 @@
 #ifndef WALIA_WEB_TRANS_WBIN_H
 #define WALIA_WEB_TRANS_WBIN_H
 
-#include "db/db_common.h"
-#include "db/db_pool.h"
-#include "core/value.h"
+#include "../db/db_common.h"
+#include "../db/db_pool.h"
+#include "../core/value.h"
 
 // ==========================================
 // W-BIN PROTOCOL SPECIFICATION

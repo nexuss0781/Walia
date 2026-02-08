@@ -3,9 +3,9 @@
 #include <string.h>
 #include <time.h>
 
-#include "lib/lib_timer.h"
-#include "core/memory.h"
-#include "core/vm.h"
+#include "../lib/lib_timer.h"
+#include "../core/memory.h"
+#include "../core/vm.h"
 
 // ==========================================
 // INTERNAL UTILITIES

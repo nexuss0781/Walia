@@ -3,7 +3,7 @@
 #include <sys/mman.h>
 #include <unistd.h>
 
-#include "sys/sys_ffi_alloc.h"
+#include "../sys/sys_ffi_alloc.h"
 
 // ==========================================
 // INTERNAL UTILITIES

@@ -1,21 +1,21 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "db/db_common.h"
-#include "db/db_pager.h"
-#include "db/db_shadow.h"
-#include "db/db_schema.h"
-#include "db/db_row.h"
-#include "db/db_btree.h"
-#include "db/db_constraint.h"
-#include "db/db_catalog.h"      // Fixed: Provides WldEntryType and db_catalog_lookup
-#include "sql/sql_parser.h"
-#include "sql/sql_compiler.h"
-#include "core/vm.h"
-#include "core/object.h"
+#include "../db/db_common.h"
+#include "../db/db_pager.h"
+#include "../db/db_shadow.h"
+#include "../db/db_schema.h"
+#include "../db/db_row.h"
+#include "../db/db_btree.h"
+#include "../db/db_constraint.h"
+#include "../db/db_catalog.h"      // Fixed: Provides WldEntryType and db_catalog_lookup
+#include "../sql/sql_parser.h"
+#include "../sql/sql_compiler.h"
+#include "../core/vm.h"
+#include "../core/object.h"
 
-#include "db/db_pool.h"
-#include "native.h"
+#include "../db/db_pool.h"
+#include "../native.h"
 
 // External substrate references initialized in main.c
 // (Now resolved via headers)

@@ -1,7 +1,7 @@
 #ifndef WALIA_SYS_FFI_TYPES_H
 #define WALIA_SYS_FFI_TYPES_H
 
-#include "core/common.h"
+#include "../core/common.h"
 
 // ==========================================
 // FFI TYPE SPECIFICATIONS

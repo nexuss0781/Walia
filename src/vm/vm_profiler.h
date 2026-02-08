@@ -1,8 +1,8 @@
 #ifndef WALIA_VM_PROFILER_H
 #define WALIA_VM_PROFILER_H
 
-#include "core/common.h"
-#include "core/object.h"
+#include "../core/common.h"
+#include "../core/object.h"
 
 // ==========================================
 // PROFILER SPECIFICATIONS

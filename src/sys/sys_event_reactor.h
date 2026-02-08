@@ -1,7 +1,7 @@
 #ifndef WALIA_SYS_EVENT_REACTOR_H
 #define WALIA_SYS_EVENT_REACTOR_H
 
-#include "web/wld_event_common.h"
+#include "../web/wld_event_common.h"
 
 // ==========================================
 // REACTOR ENGINE SPECIFICATION

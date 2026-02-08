@@ -2,10 +2,10 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "lib/lib_tensor.h"
-#include "core/memory.h"
-#include "core/vm.h"
-#include "native.h"
+#include "../lib/lib_tensor.h"
+#include "../core/memory.h"
+#include "../core/vm.h"
+#include "../native.h"
 
 // ==========================================
 // NATIVE SOVEREIGN BINDINGS

@@ -1,9 +1,9 @@
 #ifndef WALIA_LIB_COLLECTIONS_H
 #define WALIA_LIB_COLLECTIONS_H
 
-#include "core/common.h"
-#include "core/object.h"
-#include "core/value.h"
+#include "../core/common.h"
+#include "../core/object.h"
+#include "../core/value.h"
 
 // ==========================================
 // SOVEREIGN LIST (Dynamic Persistent Array)

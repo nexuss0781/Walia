@@ -1,7 +1,7 @@
 #ifndef WALIA_WEB_SIMD_CORE_H
 #define WALIA_WEB_SIMD_CORE_H
 
-#include "web/wld_surface_common.h"
+#include "../web/wld_surface_common.h"
 
 // ==========================================
 // SIMD CORE API

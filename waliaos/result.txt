@@ -1,8 +1,5 @@
-In file included from lib/../../src/db/db_pool.h:5,
-                 from lib/../../src/db/db_btree.h:5,
-                 from lib/sys_dedup_fs.c:4:
-lib/../../src/db/db_shadow.h:4:10: fatal error: db/db_common.h: No such file or directory
-    4 | #include "db/db_common.h"
-      |          ^~~~~~~~~~~~~~~~
+core/sys_final_fusion.c:10:10: fatal error: ../src/core/vm.h: No such file or directory
+   10 | #include "../src/core/vm.h"
+      |          ^~~~~~~~~~~~~~~~~~
 compilation terminated.
-make: *** [Makefile:49: lib/sys_dedup_fs.o] Error 1
+make: *** [Makefile:53: build/obj/sys_final_fusion.o] Error 1

@@ -1,11 +1,11 @@
 #ifndef WALIA_VM_SYS_OPS_H
 #define WALIA_VM_SYS_OPS_H
 
-#include "core/common.h"
-#include "core/vm.h"
-#include "core/value.h"
-#include "core/opcode.h"    // Fixed: Pulls master ISA definitions
-#include "sys/sys_types.h"
+#include "../core/common.h"
+#include "../core/vm.h"
+#include "../core/value.h"
+#include "../core/opcode.h"    // Fixed: Pulls master ISA definitions
+#include "../sys/sys_types.h"
 
 // ==========================================
 // RAW MEMORY API

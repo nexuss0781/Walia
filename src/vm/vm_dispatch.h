@@ -1,10 +1,10 @@
 #ifndef WALIA_VM_DISPATCH_H
 #define WALIA_VM_DISPATCH_H
 
-#include "core/common.h"
-#include "core/value.h"
-#include "core/object.h"
-#include "vm/vm_shape.h"
+#include "../core/common.h"
+#include "../core/value.h"
+#include "../core/object.h"
+#include "../vm/vm_shape.h"
 
 // ==========================================
 // INLINE CACHE (IC) STRUCTURES

@@ -4,7 +4,7 @@
 #include "ast.h"
 #include "chunk.h"
 #include "token.h"
-#include "sys/sys_types.h"
+#include "../sys/sys_types.h"
 
 // ==========================================
 // COMPILER CORE STRUCTURES

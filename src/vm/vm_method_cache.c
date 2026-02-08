@@ -1,5 +1,5 @@
-#include "vm/vm_method_cache.h"
-#include "core/value.h"
+#include "../vm/vm_method_cache.h"
+#include "../core/value.h"
 
 MethodCacheEntry vm_method_cache[METHOD_CACHE_SIZE];
 

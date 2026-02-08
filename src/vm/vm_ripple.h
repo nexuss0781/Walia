@@ -1,8 +1,8 @@
 #ifndef WALIA_VM_RIPPLE_H
 #define WALIA_VM_RIPPLE_H
 
-#include "core/common.h"
-#include "vm/vm_entangle.h"
+#include "../core/common.h"
+#include "../vm/vm_entangle.h"
 
 // ==========================================
 // RIPPLE ENGINE API

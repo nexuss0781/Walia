@@ -1,7 +1,7 @@
 #ifndef WALIA_WEB_TRANS_COMMON_H
 #define WALIA_WEB_TRANS_COMMON_H
 
-#include "core/common.h"
+#include "../core/common.h"
 
 // ==========================================
 // TRANSCODER SPECIFICATIONS

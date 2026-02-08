@@ -1,8 +1,8 @@
 #ifndef WALIA_LIB_TENSOR_CORE_H
 #define WALIA_LIB_TENSOR_CORE_H
 
-#include "core/common.h"
-#include "core/object.h"
+#include "../core/common.h"
+#include "../core/object.h"
 
 // ==========================================
 // TENSOR ARCHITECTURAL LIMITS

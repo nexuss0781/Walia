@@ -1,9 +1,9 @@
 #ifndef WALIA_WEB_PROXY_H
 #define WALIA_WEB_PROXY_H
 
-#include "core/common.h"
-#include "core/object.h"
-#include "core/value.h"
+#include "../core/common.h"
+#include "../core/object.h"
+#include "../core/value.h"
 
 // ==========================================
 // PROXY SPECIFICATIONS

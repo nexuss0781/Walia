@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "sys/sys_layout.h"
+#include "../sys/sys_layout.h"
 
 // ==========================================
 // PHYSICAL MAPPING ENGINE

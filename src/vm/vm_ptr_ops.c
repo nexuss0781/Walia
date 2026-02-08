@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdint.h>
 
-#include "vm/vm_ptr_ops.h"
-#include "core/vm.h"
+#include "../vm/vm_ptr_ops.h"
+#include "../core/vm.h"
 
 // ==========================================
 // UNSAFE MEMORY LOGIC

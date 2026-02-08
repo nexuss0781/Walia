@@ -5,7 +5,7 @@
 #include "table.h"
 #include "value.h"
 #include "opcode.h"
-#include "db/db_shadow.h"
+#include "../db/db_shadow.h"
 
 // ==========================================
 // ARCHITECTURAL LIMITS

@@ -6,10 +6,10 @@
     #include <immintrin.h> // Intel/AMD AVX-512 Prerequisite
 #endif
 
-#include "web/web_font_sdf.h"
-#include "web/web_simd_core.h"
-#include "core/memory.h"
-#include "tooling/tooling_nexus_probes.h"
+#include "../web/web_font_sdf.h"
+#include "../web/web_simd_core.h"
+#include "../core/memory.h"
+#include "../tooling/tooling_nexus_probes.h"
 
 // ==========================================
 // AVX-512 HARDWARE KERNEL

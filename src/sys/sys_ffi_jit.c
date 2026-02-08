@@ -2,10 +2,10 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "sys/sys_ffi_jit.h"
-#include "sys/sys_ffi_alloc.h"
-#include "core/memory.h"
-#include "core/vm.h"
+#include "../sys/sys_ffi_jit.h"
+#include "../sys/sys_ffi_alloc.h"
+#include "../core/memory.h"
+#include "../core/vm.h"
 
 // ==========================================
 // X86_64 MACHINE CODE EMITTER

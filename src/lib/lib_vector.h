@@ -1,8 +1,8 @@
 #ifndef WALIA_LIB_VECTOR_H
 #define WALIA_LIB_VECTOR_H
 
-#include "core/common.h"
-#include "core/object.h"
+#include "../core/common.h"
+#include "../core/object.h"
 
 // ==========================================
 // NEURAL VECTOR SPECIFICATION

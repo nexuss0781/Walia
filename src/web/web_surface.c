@@ -5,9 +5,9 @@
 #include <sys/mman.h>
 #include <unistd.h>
 
-#include "web/web_surface.h"
-#include "core/memory.h"
-#include "core/vm.h"
+#include "../web/web_surface.h"
+#include "../core/memory.h"
+#include "../core/vm.h"
 
 // ==========================================
 // SURFACE LIFECYCLE

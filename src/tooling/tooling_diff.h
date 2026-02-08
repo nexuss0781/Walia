@@ -1,7 +1,7 @@
 #ifndef WALIA_TOOLING_DIFF_H
 #define WALIA_TOOLING_DIFF_H
 
-#include "core/common.h"
+#include "../core/common.h"
 
 // ==========================================
 // VISUAL COLOR SCHEME

@@ -1,8 +1,8 @@
 #ifndef WALIA_SYS_FFI_DYNAMIC_H
 #define WALIA_SYS_FFI_DYNAMIC_H
 
-#include "core/common.h"
-#include "core/object.h"
+#include "../core/common.h"
+#include "../core/object.h"
 
 // ==========================================
 // DYNAMIC LINKER API

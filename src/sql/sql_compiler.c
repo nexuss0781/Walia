@@ -2,11 +2,11 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "sql/sql_compiler.h"
-#include "core/opcode.h"
-#include "core/compiler.h"
-#include "db/db_row.h"
-#include "core/hash.h"
+#include "../sql/sql_compiler.h"
+#include "../core/opcode.h"
+#include "../core/compiler.h"
+#include "../db/db_row.h"
+#include "../core/hash.h"
 
 bool db_sql_compile(SqlQuery* query, WldTableDescriptor* schema, Chunk* chunk) {
     // 1. Initialize result set

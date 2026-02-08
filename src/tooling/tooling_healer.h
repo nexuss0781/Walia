@@ -1,8 +1,8 @@
 #ifndef WALIA_TOOLING_HEALER_H
 #define WALIA_TOOLING_HEALER_H
 
-#include "core/common.h"
-#include "tooling/tooling_ledger.h"
+#include "../core/common.h"
+#include "../tooling/tooling_ledger.h"
 
 // ==========================================
 // HEALER API

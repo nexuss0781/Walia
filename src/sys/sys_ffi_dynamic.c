@@ -3,13 +3,13 @@
 #include <string.h>
 #include <dlfcn.h> // POSIX Dynamic Linking Standard
 
-#include "sys/sys_ffi_jit.h"
-#include "sys/sys_ffi_types.h"
-#include "sys/sys_ffi_alloc.h"
-#include "native.h"
-#include "core/memory.h"
-#include "core/vm.h"
-#include "core/object.h"
+#include "../sys/sys_ffi_jit.h"
+#include "../sys/sys_ffi_types.h"
+#include "../sys/sys_ffi_alloc.h"
+#include "../native.h"
+#include "../core/memory.h"
+#include "../core/vm.h"
+#include "../core/object.h"
 
 // ==========================================
 // INTERNAL RESOURCE OBJECTS

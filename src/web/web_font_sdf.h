@@ -1,9 +1,9 @@
 #ifndef WALIA_WEB_FONT_SDF_H
 #define WALIA_WEB_FONT_SDF_H
 
-#include "web/wld_surface_common.h"
-#include "web/web_surface.h"
-#include "core/object.h"
+#include "../web/wld_surface_common.h"
+#include "../web/web_surface.h"
+#include "../core/object.h"
 
 // ==========================================
 // FONT SPECIFICATIONS

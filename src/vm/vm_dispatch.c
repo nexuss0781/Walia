@@ -2,10 +2,10 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "vm/vm_dispatch.h"
-#include "vm/vm_shape.h"
-#include "core/table.h"
-#include "core/vm.h"
+#include "../vm/vm_dispatch.h"
+#include "../vm/vm_shape.h"
+#include "../core/table.h"
+#include "../core/vm.h"
 
 // ==========================================
 // ADAPTIVE DISPATCH ENGINE

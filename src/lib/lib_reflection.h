@@ -1,8 +1,8 @@
 #ifndef WALIA_LIB_REFLECTION_H
 #define WALIA_LIB_REFLECTION_H
 
-#include "core/common.h"
-#include "core/value.h"
+#include "../core/common.h"
+#include "../core/value.h"
 
 // ==========================================
 // REFLECTION API

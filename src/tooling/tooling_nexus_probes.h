@@ -1,7 +1,7 @@
 #ifndef WALIA_TOOLING_NEXUS_PROBES_H
 #define WALIA_TOOLING_NEXUS_PROBES_H
 
-#include "tooling/tooling_nexus_bus.h"
+#include "../tooling/tooling_nexus_bus.h"
 
 // ==========================================
 // SOVEREIGN TELEMETRY MACROS

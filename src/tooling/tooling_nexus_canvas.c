@@ -3,7 +3,7 @@
 #include <sys/ioctl.h>
 #include <unistd.h>
 
-#include "tooling/tooling_nexus_canvas.h"
+#include "../tooling/tooling_nexus_canvas.h"
 
 // ==========================================
 // ANSI ESCAPE COMMANDS

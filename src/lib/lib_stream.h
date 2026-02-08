@@ -1,9 +1,9 @@
 #ifndef WALIA_LIB_STREAM_H
 #define WALIA_LIB_STREAM_H
 
-#include "core/common.h"
-#include "core/object.h"
-#include "core/value.h"
+#include "../core/common.h"
+#include "../core/object.h"
+#include "../core/value.h"
 
 // ==========================================
 // STREAM SPECIFICATIONS

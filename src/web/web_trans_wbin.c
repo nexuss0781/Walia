@@ -2,13 +2,13 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "web/web_trans_wbin.h"
-#include "web/web_trans_common.h"
-#include "db/db_slotted.h"
-#include "db/db_pool.h"
-#include "core/hash.h"
-#include "core/object.h"
-#include "core/memory.h"
+#include "../web/web_trans_wbin.h"
+#include "../web/web_trans_common.h"
+#include "../db/db_slotted.h"
+#include "../db/db_pool.h"
+#include "../core/hash.h"
+#include "../core/object.h"
+#include "../core/memory.h"
 
 // ==========================================
 // BINARY ENCODING (Memory-to-Wire)

@@ -1,9 +1,9 @@
 #ifndef WALIA_TOOLING_SIMULATOR_H
 #define WALIA_TOOLING_SIMULATOR_H
 
-#include "core/common.h"
-#include "core/object.h"
-#include "core/vm.h"
+#include "../core/common.h"
+#include "../core/object.h"
+#include "../core/vm.h"
 
 // ==========================================
 // SIMULATOR CONFIGURATION

@@ -1,10 +1,10 @@
 #ifndef WALIA_WEB_TRAITS_H
 #define WALIA_WEB_TRAITS_H
 
-#include "core/common.h"
-#include "core/object.h"
-#include "core/table.h"
-#include "vm/vm_shape.h"
+#include "../core/common.h"
+#include "../core/object.h"
+#include "../core/table.h"
+#include "../vm/vm_shape.h"
 
 // ==========================================
 // TRAIT SPECIFICATION

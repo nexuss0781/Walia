@@ -1,10 +1,10 @@
 #ifndef WALIA_WLD_EVENT_LOOP_H
 #define WALIA_WLD_EVENT_LOOP_H
 
-#include "web/wld_event_common.h"
-#include "sys/sys_event_reactor.h"
-#include "core/table.h"
-#include "db/db_dispatch.h"
+#include "../web/wld_event_common.h"
+#include "../sys/sys_event_reactor.h"
+#include "../core/table.h"
+#include "../db/db_dispatch.h"
 
 // ==========================================
 // EVENT LOOP SPECIFICATION

@@ -3,8 +3,8 @@
 
 #include "db_vector_match.h"
 #include "db_vector_math.h"
-#include "lib/lib_vector.h"
-#include "tooling/tooling_nexus_probes.h"
+#include "../lib/lib_vector.h"
+#include "../tooling/tooling_nexus_probes.h"
 
 // ==========================================
 // NEURAL PROXIMITY BRANCHING

@@ -1,10 +1,10 @@
 #ifndef WALIA_VM_PAGER_LINK_H
 #define WALIA_VM_PAGER_LINK_H
 
-#include "core/common.h"
-#include "db/db_pool.h"
-#include "core/value.h"
-#include "core/object.h"
+#include "../core/common.h"
+#include "../db/db_pool.h"
+#include "../core/value.h"
+#include "../core/object.h"
 
 // ==========================================
 // FUSION SPECIFICATIONS

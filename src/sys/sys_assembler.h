@@ -1,8 +1,8 @@
 #ifndef WALIA_SYS_ASSEMBLER_H
 #define WALIA_SYS_ASSEMBLER_H
 
-#include "core/common.h"
-#include "core/object.h"
+#include "../core/common.h"
+#include "../core/object.h"
 
 // ==========================================
 // CODE BLOB SPECIFICATION

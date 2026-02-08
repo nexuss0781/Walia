@@ -4,10 +4,10 @@
 #include <dirent.h>
 #include <sys/stat.h>
 
-#include "tooling/tooling_hash_scanner.h"
-#include "core/scanner.h"
-#include "core/hash.h"
-#include "core/memory.h"
+#include "../tooling/tooling_hash_scanner.h"
+#include "../core/scanner.h"
+#include "../core/hash.h"
+#include "../core/memory.h"
 
 static void extract_blocks(const char* path, const char* source) {
     initScanner(source);

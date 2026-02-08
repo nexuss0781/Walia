@@ -1,9 +1,9 @@
 #ifndef WALIA_VM_TRAPS_H
 #define WALIA_VM_TRAPS_H
 
-#include "core/common.h"
-#include "core/value.h"
-#include "core/object.h"
+#include "../core/common.h"
+#include "../core/value.h"
+#include "../core/object.h"
 
 // ==========================================
 // TRAP DISPATCHER API

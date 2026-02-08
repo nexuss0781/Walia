@@ -1,10 +1,10 @@
 #ifndef WALIA_WEB_SURFACE_H
 #define WALIA_WEB_SURFACE_H
 
-#include "web/wld_event_common.h" // Fixed: Added for SerResult definition
-#include "web/wld_surface_common.h"
-#include "core/object.h"
-#include "core/value.h"
+#include "../web/wld_event_common.h" // Fixed: Added for SerResult definition
+#include "../web/wld_surface_common.h"
+#include "../core/object.h"
+#include "../core/value.h"
 
 // ==========================================
 // UI ELEMENT TYPES

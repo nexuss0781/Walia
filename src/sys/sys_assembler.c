@@ -4,9 +4,9 @@
 #include <sys/mman.h>
 #include <unistd.h>
 
-#include "sys/sys_assembler.h"
-#include "core/memory.h"
-#include "core/vm.h"
+#include "../sys/sys_assembler.h"
+#include "../core/memory.h"
+#include "../core/vm.h"
 
 // ==========================================
 // ARCHITECTURE DETECTION

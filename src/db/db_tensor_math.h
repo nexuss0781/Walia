@@ -1,7 +1,7 @@
 #ifndef WALIA_DB_TENSOR_MATH_H
 #define WALIA_DB_TENSOR_MATH_H
 
-#include "lib/lib_tensor_core.h"
+#include "../lib/lib_tensor_core.h"
 
 // ================= =========================
 // TENSOR KERNEL SPECIFICATIONS

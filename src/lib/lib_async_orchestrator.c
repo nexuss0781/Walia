@@ -2,13 +2,13 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "lib/lib_async_orchestrator.h"
-#include "vm/vm_async_core.h"
-#include "effect.h"
-#include "lib/lib_collections.h"
-#include "core/memory.h"
-#include "core/vm.h"
-#include "native.h"
+#include "../lib/lib_async_orchestrator.h"
+#include "../vm/vm_async_core.h"
+#include "../effect.h"
+#include "../lib/lib_collections.h"
+#include "../core/memory.h"
+#include "../core/vm.h"
+#include "../native.h"
 
 // ObjWaitGroup is unified in core/object.h
 

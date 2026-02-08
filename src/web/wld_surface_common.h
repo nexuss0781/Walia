@@ -1,7 +1,7 @@
 #ifndef WALIA_WLD_SURFACE_COMMON_H
 #define WALIA_WLD_SURFACE_COMMON_H
 
-#include "core/common.h"
+#include "../core/common.h"
 
 // ==========================================
 // VISUAL RESOLUTION STANDARDS

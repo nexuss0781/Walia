@@ -4,12 +4,12 @@
 #include <math.h>
 #include <sys/stat.h>
 
-#include "core/common.h"
-#include "core/object.h"
-#include "core/value.h"
-#include "core/table.h"
-#include "core/vm.h"
-#include "core/memory.h"
+#include "../core/common.h"
+#include "../core/object.h"
+#include "../core/value.h"
+#include "../core/table.h"
+#include "../core/vm.h"
+#include "../core/memory.h"
 
 // Helper defined in native.c
 extern void defineNative(const char* name, NativeFn function);

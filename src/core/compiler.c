@@ -6,14 +6,14 @@
 #include "compiler.h"
 #include "memory.h"
 #include "opcode.h"
-#include "vm/vm_db_ops.h"
-#include "vm/vm_sys_ops.h"
+#include "../vm/vm_db_ops.h"
+#include "../vm/vm_sys_ops.h"
 #include "object.h"
 #include "table.h"
 #include "hash.h"
-#include "sys/sys_types.h"
-#include "sys/sys_units_check.h"
-#include "compiler_pipe.h"
+#include "../sys/sys_types.h"
+#include "../sys/sys_units_check.h"
+#include "../compiler_pipe.h"
 
 SovereignCompiler* current = NULL;
 

@@ -1,9 +1,9 @@
 #ifndef WALIA_WEB_RASTER_TILER_H
 #define WALIA_WEB_RASTER_TILER_H
 
-#include "web/wld_surface_common.h"
-#include "web/web_surface.h"
-#include "db/db_dispatch.h"
+#include "../web/wld_surface_common.h"
+#include "../web/web_surface.h"
+#include "../db/db_dispatch.h"
 
 // ==========================================
 // RENDER CONTEXT

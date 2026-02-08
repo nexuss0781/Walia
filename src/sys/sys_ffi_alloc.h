@@ -1,7 +1,7 @@
 #ifndef WALIA_SYS_FFI_ALLOC_H
 #define WALIA_SYS_FFI_ALLOC_H
 
-#include "core/common.h"
+#include "../core/common.h"
 
 // ==========================================
 // EXECUTABLE MEMORY API

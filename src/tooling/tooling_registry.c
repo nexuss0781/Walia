@@ -2,10 +2,10 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "tooling/tooling_registry.h"
-#include "core/table.h"
-#include "core/memory.h"
-#include "core/object.h"
+#include "../tooling/tooling_registry.h"
+#include "../core/table.h"
+#include "../core/memory.h"
+#include "../core/object.h"
 
 // ==========================================
 // INTERNAL STORAGE

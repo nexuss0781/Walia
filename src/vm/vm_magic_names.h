@@ -1,7 +1,7 @@
 #ifndef WALIA_VM_MAGIC_NAMES_H
 #define WALIA_VM_MAGIC_NAMES_H
 
-#include "core/object.h"
+#include "../core/object.h"
 
 // ==========================================
 // MAGIC METHOD REGISTRY

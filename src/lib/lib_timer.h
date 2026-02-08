@@ -1,8 +1,8 @@
 #ifndef WALIA_LIB_TIMER_H
 #define WALIA_LIB_TIMER_H
 
-#include "web/wld_event_common.h"
-#include "core/object.h" // Fixed: Added for physical struct Obj definition
+#include "../web/wld_event_common.h"
+#include "../core/object.h" // Fixed: Added for physical struct Obj definition
 
 // ==========================================
 // TIMING WHEEL SPECIFICATIONS

@@ -1,8 +1,8 @@
 #ifndef WALIA_TOOLING_HASH_SCANNER_H
 #define WALIA_TOOLING_HASH_SCANNER_H
 
-#include "core/common.h"
-#include "core/hash.h"
+#include "../core/common.h"
+#include "../core/hash.h"
 
 // ==========================================
 // SYMBOL BLOCK DEFINITION

@@ -1,7 +1,7 @@
 #ifndef WALIA_TOOLING_NEXUS_BUS_H
 #define WALIA_TOOLING_NEXUS_BUS_H
 
-#include "core/common.h"
+#include "../core/common.h"
 #include <stdatomic.h>
 
 // ==========================================

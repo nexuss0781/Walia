@@ -2,20 +2,20 @@
 #include <string.h>
 #include <time.h>
 
-#include "db/db_common.h"
-#include "db/db_pager.h"
-#include "db/db_shadow.h"
-#include "db/db_catalog.h"      // Fixed: Provides WldEntryType and db_catalog_lookup
-#include "db/db_sentry_mapper.h"
-#include "db/db_sentry_jit.h"
-#include "db/db_sentry_temporal.h"
-#include "db/db_sentry_security.h"
-#include "lib/lib_collections.h" // Fixed: Provides walia_list_new
-#include "core/vm.h"
-#include "core/object.h"
+#include "../db/db_common.h"
+#include "../db/db_pager.h"
+#include "../db/db_shadow.h"
+#include "../db/db_catalog.h"      // Fixed: Provides WldEntryType and db_catalog_lookup
+#include "../db/db_sentry_mapper.h"
+#include "../db/db_sentry_jit.h"
+#include "../db/db_sentry_temporal.h"
+#include "../db/db_sentry_security.h"
+#include "../lib/lib_collections.h" // Fixed: Provides walia_list_new
+#include "../core/vm.h"
+#include "../core/object.h"
 
-#include "db/db_pool.h"
-#include "native.h"
+#include "../db/db_pool.h"
+#include "../native.h"
 
 // External Substrate References
 // (Now resolved via headers)

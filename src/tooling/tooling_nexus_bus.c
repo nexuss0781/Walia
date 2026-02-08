@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "tooling/tooling_nexus_bus.h"
+#include "../tooling/tooling_nexus_bus.h"
 
 // The Global Sovereign Bus
 static WaliaNexusBus nexusBus;

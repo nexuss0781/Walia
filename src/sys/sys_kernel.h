@@ -1,8 +1,8 @@
 #ifndef WALIA_SYS_KERNEL_H
 #define WALIA_SYS_KERNEL_H
 
-#include "core/common.h"
-#include "core/value.h"
+#include "../core/common.h"
+#include "../core/value.h"
 
 // ==========================================
 // SYSTEM CALL INTERFACE

@@ -1,8 +1,8 @@
 #include <math.h>
 #include <stdint.h>
 #include "db_vector_math.h"
-#include "lib/lib_vector.h"
-#include "tooling/tooling_nexus_probes.h"
+#include "../lib/lib_vector.h"
+#include "../tooling/tooling_nexus_probes.h"
 
 // Hardware Intrinsics Detection
 #if defined(__x86_64__)

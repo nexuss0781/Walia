@@ -2,11 +2,11 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "tooling/tooling_oracle_runner.h"
-#include "tooling/tooling_simulator.h"
-#include "tooling/tooling_ledger.h"
-#include "core/compiler.h"
-#include "core/parser.h"
+#include "../tooling/tooling_oracle_runner.h"
+#include "../tooling/tooling_simulator.h"
+#include "../tooling/tooling_ledger.h"
+#include "../core/compiler.h"
+#include "../core/parser.h"
 
 // ==========================================
 // ANONYMOUS JIT SPLICING

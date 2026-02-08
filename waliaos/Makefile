@@ -6,7 +6,7 @@
 # 1. TOOLCHAIN (Standard x86_64 Freestanding)
 CC      := gcc
 AS      := as
-LD      := ld
+LD      := gcc
 OBJCOPY := objcopy
 
 # 2. PATHS & DIRECTORIES
@@ -18,20 +18,22 @@ LIB_DIR   := lib
 DRV_DIR   := drivers
 
 # 3. COMPILATION FLAGS (UFO-GRADE OPTIMIZATION)
-# -ffreestanding: No assumptions about standard libraries
-# -mno-red-zone: Essential for kernel stack safety
-# -O3 -flto: Maximum cross-module optimization
-CFLAGS := -m64 -ffreestanding -O3 -flto -Wall -Wextra -Iinclude -I../ -fno-stack-protector -fno-pic -mno-red-zone -mcmodel=kernel
+CFLAGS := -m32 -ffreestanding -O3 -Wall -Wextra -Iinclude -I../ -fno-stack-protector -fno-pic -mno-red-zone
+LDFLAGS := -m32 -nostdlib -T linker.ld
 
-# 4. SOURCE DISCOVERY
-C_SOURCES := $(wildcard $(CORE_DIR)/*.c) \
-             $(wildcard $(LIB_DIR)/*.c)  \
-             $(wildcard $(DRV_DIR)/*.c)  \
-             ../src/core/vm.c ../src/core/object.c ../src/core/memory.c ../src/core/table.c ../src/core/scanner.c ../src/core/parser.c ../src/core/compiler.c ../src/core/hash.c
-
+# 4. SOURCE DISCOVERY & OBJECT MAPPING
+CORE_SOURCES := $(wildcard $(CORE_DIR)/*.c)
+LIB_SOURCES  := $(wildcard $(LIB_DIR)/*.c)
+DRV_SOURCES  := $(wildcard $(DRV_DIR)/*.c)
+SHARED_SOURCES := ../src/core/vm.c ../src/core/object.c ../src/core/memory.c ../src/core/table.c ../src/core/scanner.c ../src/core/parser.c ../src/core/compiler.c ../src/core/hash.c
 S_SOURCES := boot.S
 
-OBJECTS := $(C_SOURCES:.c=.o) $(S_SOURCES:.S=.o)
+# Map sources to the local build directory to avoid clashing with host build
+OBJECTS := $(addprefix $(BUILD_DIR)/obj/, $(notdir $(CORE_SOURCES:.c=.o))) \
+           $(addprefix $(BUILD_DIR)/obj/, $(notdir $(LIB_SOURCES:.c=.o))) \
+           $(addprefix $(BUILD_DIR)/obj/, $(notdir $(DRV_SOURCES:.c=.o))) \
+           $(addprefix $(BUILD_DIR)/obj/, $(notdir $(SHARED_SOURCES:.c=.o))) \
+           $(addprefix $(BUILD_DIR)/obj/, $(S_SOURCES:.S=.o))
 
 # 5. MASTER TARGETS
 .PHONY: all clean kernel iso run
@@ -42,13 +44,29 @@ kernel: $(BUILD_DIR)/walia_os.bin
 
 $(BUILD_DIR)/walia_os.bin: $(OBJECTS)
 	@mkdir -p $(BUILD_DIR)
-	@$(LD) -T linker.ld -o $@ $(OBJECTS) -nostdlib
+	@$(LD) $(LDFLAGS) -o $@ $(OBJECTS)
 	@echo ">> Walia OS: Sovereign Gold Binary Assembled [8-byte aligned]."
 
-%.o: %.c
+# Rules for local sources
+$(BUILD_DIR)/obj/%.o: $(CORE_DIR)/%.c
+	@mkdir -p $(BUILD_DIR)/obj
 	@$(CC) $(CFLAGS) -c $< -o $@
 
-%.o: %.S
+$(BUILD_DIR)/obj/%.o: $(LIB_DIR)/%.c
+	@mkdir -p $(BUILD_DIR)/obj
+	@$(CC) $(CFLAGS) -c $< -o $@
+
+$(BUILD_DIR)/obj/%.o: $(DRV_DIR)/%.c
+	@mkdir -p $(BUILD_DIR)/obj
+	@$(CC) $(CFLAGS) -c $< -o $@
+
+# Rules for shared sources in ../src/core/
+$(BUILD_DIR)/obj/%.o: ../src/core/%.c
+	@mkdir -p $(BUILD_DIR)/obj
+	@$(CC) $(CFLAGS) -c $< -o $@
+
+$(BUILD_DIR)/obj/%.o: %.S
+	@mkdir -p $(BUILD_DIR)/obj
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 # 6. DISTRIBUTION (ISO Generation)

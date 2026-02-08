@@ -1,8 +1,8 @@
 #ifndef WALIA_WEB_TRANS_LEXER_H
 #define WALIA_WEB_TRANS_LEXER_H
 
-#include "core/common.h"
-#include "web/web_trans_common.h"
+#include "../core/common.h"
+#include "../web/web_trans_common.h"
 
 // ==========================================
 // SIMD LEXER API

@@ -1,8 +1,8 @@
 #ifndef WALIA_TOOLING_ORACLE_GEN_H
 #define WALIA_TOOLING_ORACLE_GEN_H
 
-#include "core/common.h"
-#include "tooling/tooling_oracle_lexer.h"
+#include "../core/common.h"
+#include "../tooling/tooling_oracle_lexer.h"
 
 // ==========================================
 // MANUAL EXPORT CONFIGURATION

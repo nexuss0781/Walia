@@ -1,9 +1,9 @@
 #ifndef WALIA_VM_ENTANGLE_H
 #define WALIA_VM_ENTANGLE_H
 
-#include "core/common.h"
-#include "core/object.h"
-#include "core/value.h"
+#include "../core/common.h"
+#include "../core/object.h"
+#include "../core/value.h"
 
 // ==========================================
 // ENTANGLEMENT SPECIFICATIONS

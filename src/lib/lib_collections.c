@@ -1,13 +1,13 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "lib/lib_collections.h"
-#include "core/memory.h"
-#include "core/object.h"
-#include "core/table.h"
-#include "core/value.h"
-#include "core/vm.h"
-#include "native.h"
+#include "../lib/lib_collections.h"
+#include "../core/memory.h"
+#include "../core/object.h"
+#include "../core/table.h"
+#include "../core/value.h"
+#include "../core/vm.h"
+#include "../native.h"
 
 // ==========================================
 // MAP IMPLEMENTATION

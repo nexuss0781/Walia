@@ -1,10 +1,10 @@
 #ifndef WALIA_VM_OPERATORS_H
 #define WALIA_VM_OPERATORS_H
 
-#include "core/common.h"
-#include "core/value.h"
-#include "vm/vm_magic_names.h"
-#include "core/vm.h" // For InterpretResult
+#include "../core/common.h"
+#include "../core/value.h"
+#include "../vm/vm_magic_names.h"
+#include "../core/vm.h" // For InterpretResult
 
 // ==========================================
 // OPERATOR DISPATCH API

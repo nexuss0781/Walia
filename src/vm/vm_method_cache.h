@@ -1,9 +1,9 @@
 #ifndef WALIA_VM_METHOD_CACHE_H
 #define WALIA_VM_METHOD_CACHE_H
 
-#include "core/common.h"
-#include "core/value.h"
-#include "core/object.h"
+#include "../core/common.h"
+#include "../core/value.h"
+#include "../core/object.h"
 
 // ==========================================
 // POLYMORPHIC INLINE CACHE (PIC)

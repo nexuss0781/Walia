@@ -2,10 +2,10 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "tooling/tooling_oracle_lexer.h"
-#include "core/scanner.h"
-#include "core/object.h"
-#include "core/memory.h"
+#include "../tooling/tooling_oracle_lexer.h"
+#include "../core/scanner.h"
+#include "../core/object.h"
+#include "../core/memory.h"
 
 // ==========================================
 // INTERNAL REGISTRY

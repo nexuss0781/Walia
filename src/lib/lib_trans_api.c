@@ -2,22 +2,22 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "core/common.h"
-#include "core/object.h"
-#include "core/value.h"
-#include "core/vm.h"
-#include "native.h"
+#include "../core/common.h"
+#include "../core/object.h"
+#include "../core/value.h"
+#include "../core/vm.h"
+#include "../native.h"
 
 // Transcoder Substrate
-#include "web/web_trans_common.h"
-#include "web/web_trans_lexer.h"
-#include "web/web_trans_injector.h"
-#include "web/web_trans_wbin.h"
+#include "../web/web_trans_common.h"
+#include "../web/web_trans_lexer.h"
+#include "../web/web_trans_injector.h"
+#include "../web/web_trans_wbin.h"
 
 // Database Substrate
-#include "db/db_pager.h"
-#include "db/db_shadow.h"
-#include "db/db_catalog.h"
+#include "../db/db_pager.h"
+#include "../db/db_shadow.h"
+#include "../db/db_catalog.h"
 
 // External references from main.c
 extern WldPager* global_pager;

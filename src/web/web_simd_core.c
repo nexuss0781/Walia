@@ -2,7 +2,7 @@
 #include <stdint.h>
 #include <string.h>
 
-#include "web/web_simd_core.h"
+#include "../web/web_simd_core.h"
 
 // ==========================================
 // ARCHITECTURE DETECTION & INTRINSICS

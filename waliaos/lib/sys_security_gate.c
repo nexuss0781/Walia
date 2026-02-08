@@ -1,7 +1,7 @@
 #include "../include/sys_security.h"
 #include "../include/walia_kernel_base.h"
 #include "../include/driver_serial.h"
-#include "hash.h" // Accessing the SHA-256 Engine from Phase 7
+#include "../../src/core/hash.h" // Accessing the SHA-256 Engine from Phase 7
 
 // ==========================================
 // THE ONE-WAY ENTRY GATE
