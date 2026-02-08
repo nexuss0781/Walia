@@ -1,8 +1,8 @@
 #ifndef WALIA_VM_DB_OPS_H
 #define WALIA_VM_DB_OPS_H
 
-#include "core/common.h"
-#include "core/opcode.h"
+#include "../core/common.h"
+#include "../core/opcode.h"
 
 /**
  * @brief WALIA DB ISA EXTENSIONS

@@ -6,10 +6,10 @@
     #include <immintrin.h>
 #endif
 
-#include "lib/lib_evolution.h"
-#include "core/memory.h"
-#include "core/vm.h"
-#include "native.h"
+#include "../lib/lib_evolution.h"
+#include "../core/memory.h"
+#include "../core/vm.h"
+#include "../native.h"
 
 // ==========================================
 // HARDWARE-ACCELERATED CROSSOVER

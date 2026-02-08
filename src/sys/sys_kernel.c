@@ -2,8 +2,8 @@
 #include <string.h>
 #include <stdint.h>
 
-#include "sys/sys_kernel.h"
-#include "core/object.h"
+#include "../sys/sys_kernel.h"
+#include "../core/object.h"
 
 // ==========================================
 // ARCHITECTURE-SPECIFIC SYSCALL LOGIC

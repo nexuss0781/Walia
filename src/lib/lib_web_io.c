@@ -7,11 +7,11 @@
 #include <netinet/in.h>
 #include <errno.h>
 
-#include "web/wld_event_loop.h"
-#include "core/object.h"
-#include "core/vm.h"
-#include "native.h"
-#include "effect.h"
+#include "../web/wld_event_loop.h"
+#include "../core/object.h"
+#include "../core/vm.h"
+#include "../native.h"
+#include "../effect.h"
 
 // Reference to the global event loop initialized at VM boot
 extern WldEventLoop global_event_loop;

@@ -8,9 +8,9 @@
 #include "ast.h"
 #include "scanner.h"
 #include "object.h"
-#include "sys/sys_types.h"
-#include "sys/sys_units_math.h"     // Added Phase 17.1
-#include "sys/sys_units_registry.h" // Added Phase 17.1
+#include "../sys/sys_types.h"
+#include "../sys/sys_units_math.h"     // Added Phase 17.1
+#include "../sys/sys_units_registry.h" // Added Phase 17.1
 
 // = = = = = = = = = = = = = = = = = = = = = =
 // FORWARD DECLARATIONS (Sovereign Ordering)

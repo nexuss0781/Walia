@@ -2,11 +2,11 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "lib/lib_stream.h"
-#include "db/db_slotted.h"
-#include "db/db_pool.h"
-#include "core/memory.h"
-#include "core/vm.h"
+#include "../lib/lib_stream.h"
+#include "../db/db_slotted.h"
+#include "../db/db_pool.h"
+#include "../core/memory.h"
+#include "../core/vm.h"
 
 // External access to the Global Buffer Pool for Direct Ingress
 extern WldBufferPool global_pool;

@@ -5,7 +5,7 @@
 #include "db_schema.h"
 #include "../core/chunk.h"
 #include "../core/object.h"
-#include "sql/sql_parser.h" // Fixed: Provides SqlQuery and SqlJoin definitions
+#include "../sql/sql_parser.h" // Fixed: Provides SqlQuery and SqlJoin definitions
 
 // ==========================================
 // RELATIONAL JIT SPECIFICATIONS

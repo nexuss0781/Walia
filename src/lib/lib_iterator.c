@@ -1,11 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "lib/lib_iterator.h"
-#include "core/memory.h"
-#include "core/vm.h"
-#include "native.h"
-#include "lib/lib_collections.h" // For ObjList definition
+#include "../lib/lib_iterator.h"
+#include "../core/memory.h"
+#include "../core/vm.h"
+#include "../native.h"
+#include "../lib/lib_collections.h" // For ObjList definition
 
 // ==========================================
 // LIST ITERATOR IMPLEMENTATION

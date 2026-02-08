@@ -5,7 +5,7 @@
 #include "chunk.h"
 #include "value.h"
 #include "table.h"
-#include "sys/sys_types.h"
+#include "../sys/sys_types.h"
 
 // ==========================================
 // FORWARD DECLARATIONS

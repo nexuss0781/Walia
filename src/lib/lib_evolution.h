@@ -1,8 +1,8 @@
 #ifndef WALIA_LIB_EVOLUTION_H
 #define WALIA_LIB_EVOLUTION_H
 
-#include "vm/vm_gene.h"
-#include "lib/lib_collections.h"
+#include "../vm/vm_gene.h"
+#include "../lib/lib_collections.h"
 
 // ==========================================
 // EVOLUTIONARY ENGINE API

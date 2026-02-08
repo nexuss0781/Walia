@@ -1,5 +1,5 @@
 #include "../include/sys_shell.h"
-#include "tooling/tooling_nexus_bus.h"
+#include "../src/tooling/tooling_nexus_bus.h"
 #include "../include/driver_serial.h"
 
 // INTERNAL STATE

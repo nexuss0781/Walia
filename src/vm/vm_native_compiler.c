@@ -2,10 +2,10 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "vm/vm_native_compiler.h"
-#include "sys/sys_assembler.h"
-#include "core/opcode.h"
-#include "core/vm.h"
+#include "../vm/vm_native_compiler.h"
+#include "../sys/sys_assembler.h"
+#include "../core/opcode.h"
+#include "../core/vm.h"
 
 // ==========================================
 // REGISTER PINNING MAP (x86_64)

@@ -2,9 +2,9 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "tooling/tooling_diff.h"
-#include "tooling/tooling_history.h"
-#include "core/memory.h"
+#include "../tooling/tooling_diff.h"
+#include "../tooling/tooling_history.h"
+#include "../core/memory.h"
 
 // ==========================================
 // INTERNAL STRING UTILITIES

@@ -4,9 +4,9 @@
 #include <sys/stat.h>
 #include <time.h>
 
-#include "tooling/tooling_history.h"
-#include "core/hash.h"
-#include "core/memory.h"
+#include "../tooling/tooling_history.h"
+#include "../core/hash.h"
+#include "../core/memory.h"
 
 // ==========================================
 // INTERNAL HELPERS

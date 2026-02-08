@@ -1,4 +1,4 @@
-#include "drivers/driver_vga.h"
+#include "../drivers/driver_vga.h"
 
 // ==========================================
 // HARDWARE CONSTANTS

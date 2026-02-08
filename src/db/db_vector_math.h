@@ -3,7 +3,7 @@
 #define WALIA_DB_VECTOR_MATH_H
 
 #include "../core/common.h"
-#include "lib/lib_vector.h"
+#include "../lib/lib_vector.h"
 
 // ==========================================
 // SIMD HARDWARE SPECIFICATIONS

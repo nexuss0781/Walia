@@ -3,9 +3,9 @@
 #include <string.h>
 #include <unistd.h>
 
-#include "tooling/tooling_healer.h"
-#include "tooling/tooling_registry.h"
-#include "core/memory.h"
+#include "../tooling/tooling_healer.h"
+#include "../tooling/tooling_registry.h"
+#include "../core/memory.h"
 
 // ==========================================
 // CONTEXT STRUCTURES

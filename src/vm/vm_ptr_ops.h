@@ -1,8 +1,8 @@
 #ifndef WALIA_VM_PTR_OPS_H
 #define WALIA_VM_PTR_OPS_H
 
-#include "core/common.h"
-#include "core/value.h"
+#include "../core/common.h"
+#include "../core/value.h"
 
 // ==========================================
 // POINTER ISA EXTENSIONS

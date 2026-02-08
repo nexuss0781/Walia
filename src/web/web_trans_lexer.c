@@ -8,9 +8,9 @@
     #include <arm_neon.h>  // NEON
 #endif
 
-#include "web/web_trans_lexer.h"
-#include "web/web_trans_common.h"
-#include "tooling/tooling_nexus_probes.h"
+#include "../web/web_trans_lexer.h"
+#include "../web/web_trans_common.h"
+#include "../tooling/tooling_nexus_probes.h"
 
 // ==========================================
 // AVX-512 HARDWARE KERNEL

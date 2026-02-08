@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "vm/vm_ripple.h"
-#include "core/vm.h"
-#include "core/memory.h"
-#include "tooling/tooling_nexus_bus.h" // For visual pulse integration
+#include "../vm/vm_ripple.h"
+#include "../core/vm.h"
+#include "../core/memory.h"
+#include "../tooling/tooling_nexus_bus.h" // For visual pulse integration
 
 // ==========================================
 // THE GHOST-FRAME DISPATCHER

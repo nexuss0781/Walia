@@ -2,10 +2,10 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "web/web_traits.h"
-#include "core/memory.h"
-#include "core/vm.h"
-#include "vm/vm_shape.h"
+#include "../web/web_traits.h"
+#include "../core/memory.h"
+#include "../core/vm.h"
+#include "../vm/vm_shape.h"
 
 // ==========================================
 // TRAIT LIFECYCLE

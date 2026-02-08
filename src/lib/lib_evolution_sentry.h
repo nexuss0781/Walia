@@ -1,9 +1,9 @@
 #ifndef WALIA_LIB_EVOLUTION_SENTRY_H
 #define WALIA_LIB_EVOLUTION_SENTRY_H
 
-#include "core/common.h"
-#include "core/value.h"
-#include "vm/vm_gene.h"
+#include "../core/common.h"
+#include "../core/value.h"
+#include "../vm/vm_gene.h"
 
 // ==========================================
 // FORWARD DECLARATIONS

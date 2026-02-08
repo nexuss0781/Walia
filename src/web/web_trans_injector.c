@@ -2,10 +2,10 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "web/web_trans_injector.h"
-#include "db/db_slotted.h"
-#include "db/db_document.h"
-#include "core/memory.h"
+#include "../web/web_trans_injector.h"
+#include "../db/db_slotted.h"
+#include "../db/db_document.h"
+#include "../core/memory.h"
 
 // ==========================================
 // BIT-TRAILING OPTIMIZATION

@@ -1,12 +1,12 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "core/common.h"
-#include "core/object.h"
-#include "core/value.h"
-#include "core/vm.h"
-#include "native.h"
-#include "web/web_traits.h" // Phase 15.4 substrate
+#include "../core/common.h"
+#include "../core/object.h"
+#include "../core/value.h"
+#include "../core/vm.h"
+#include "../native.h"
+#include "../web/web_traits.h" // Phase 15.4 substrate
 
 // ==========================================
 // DYNAMIC COMPOSITION API

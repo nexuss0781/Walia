@@ -1,9 +1,9 @@
 #ifndef WALIA_TOOLING_UI_H
 #define WALIA_TOOLING_UI_H
 
-#include "core/common.h"
-#include "tooling/tooling_registry.h"
-#include "tooling/tooling_hash_scanner.h"
+#include "../core/common.h"
+#include "../tooling/tooling_registry.h"
+#include "../tooling/tooling_hash_scanner.h"
 
 // ==========================================
 // UI COLOR & STYLE SCHEME

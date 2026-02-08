@@ -3,9 +3,9 @@
 #include <string.h>
 #include <time.h>
 
-#include "vm/vm_gene.h"
-#include "core/memory.h"
-#include "core/vm.h"
+#include "../vm/vm_gene.h"
+#include "../core/memory.h"
+#include "../core/vm.h"
 
 // ==========================================
 // GENE BLUEPRINT LIFECYCLE

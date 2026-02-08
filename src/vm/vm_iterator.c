@@ -1,9 +1,9 @@
-#include "core/opcode.h"
-#include "core/vm.h"
-#include "vm/vm_magic_names.h"
-#include "core/value.h"
-#include "core/object.h"
-#include "core/table.h"
+#include "../core/opcode.h"
+#include "../core/vm.h"
+#include "../vm/vm_magic_names.h"
+#include "../core/value.h"
+#include "../core/object.h"
+#include "../core/table.h"
 
 // Helper to invoke a method by name (Internal VM call)
 // Replicates the OP_CALL logic but from C code

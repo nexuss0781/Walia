@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "sql/sql_parser.h"
-#include "core/scanner.h" // Utilize Walia's zero-copy scanner
+#include "../sql/sql_parser.h"
+#include "../core/scanner.h" // Utilize Walia's zero-copy scanner
 
 // ==========================================
 // INTERNAL PARSER STATE

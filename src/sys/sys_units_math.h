@@ -1,7 +1,7 @@
 #ifndef WALIA_SYS_UNITS_MATH_H
 #define WALIA_SYS_UNITS_MATH_H
 
-#include "core/ast.h"
+#include "../core/ast.h"
 
 // ==========================================
 // DIMENSIONAL ALGEBRA API

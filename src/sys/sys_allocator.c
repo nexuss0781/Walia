@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "sys/sys_allocator.h"
-#include "core/memory.h"
+#include "../sys/sys_allocator.h"
+#include "../core/memory.h"
 
 // ==========================================
 // INTERNAL ARENA STATE

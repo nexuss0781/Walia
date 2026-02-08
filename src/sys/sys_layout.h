@@ -1,9 +1,9 @@
 #ifndef WALIA_SYS_LAYOUT_H
 #define WALIA_SYS_LAYOUT_H
 
-#include "db/db_common.h"
-#include "core/ast.h"
-#include "sys/sys_types.h"
+#include "../db/db_common.h"
+#include "../core/ast.h"
+#include "../sys/sys_types.h"
 
 // ==========================================
 // LAYOUT ENGINE API

@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "sys/sys_units_math.h"
+#include "../sys/sys_units_math.h"
 
 // ==========================================
 // CORE ALGEBRA IMPLEMENTATION

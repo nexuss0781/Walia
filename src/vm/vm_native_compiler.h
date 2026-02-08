@@ -1,8 +1,8 @@
 #ifndef WALIA_VM_NATIVE_COMPILER_H
 #define WALIA_VM_NATIVE_COMPILER_H
 
-#include "core/object.h"
-#include "sys/sys_assembler.h"
+#include "../core/object.h"
+#include "../sys/sys_assembler.h"
 
 // ==========================================
 // TIER-2 JIT API

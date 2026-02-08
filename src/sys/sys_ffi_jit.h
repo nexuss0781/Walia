@@ -1,9 +1,9 @@
 #ifndef WALIA_SYS_FFI_JIT_H
 #define WALIA_SYS_FFI_JIT_H
 
-#include "core/common.h"
-#include "core/object.h"
-#include "sys/sys_ffi_types.h"
+#include "../core/common.h"
+#include "../core/object.h"
+#include "../sys/sys_ffi_types.h"
 
 // ==========================================
 // SOVEREIGN THUNK STRUCTURE

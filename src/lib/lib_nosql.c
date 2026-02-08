@@ -1,20 +1,20 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "db/db_common.h"
-#include "db/db_pager.h"
-#include "db/db_shadow.h"
-#include "db/db_hash.h"
-#include "db/db_slotted.h"
-#include "db/db_document.h"
-#include "db/db_auto_index.h"
-#include "db/db_catalog.h"
-#include "lib/lib_collections.h" // Fixed: Added for walia_list_new definition
-#include "core/vm.h"
-#include "core/object.h"
+#include "../db/db_common.h"
+#include "../db/db_pager.h"
+#include "../db/db_shadow.h"
+#include "../db/db_hash.h"
+#include "../db/db_slotted.h"
+#include "../db/db_document.h"
+#include "../db/db_auto_index.h"
+#include "../db/db_catalog.h"
+#include "../lib/lib_collections.h" // Fixed: Added for walia_list_new definition
+#include "../core/vm.h"
+#include "../core/object.h"
 
-#include "db/db_pool.h"
-#include "native.h"
+#include "../db/db_pool.h"
+#include "../native.h"
 
 // External substrate references from main.c / vm.c
 // (Now resolved via headers)

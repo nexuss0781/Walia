@@ -6,7 +6,7 @@
     #include <cpuid.h>
 #endif
 
-#include "sys/sys_hardware_probe.h"
+#include "../sys/sys_hardware_probe.h"
 
 // Singleton instance for global VM access
 WldHardwareTopology globalTopology;

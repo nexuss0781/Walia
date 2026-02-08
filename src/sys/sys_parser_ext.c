@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "sys/sys_parser_ext.h"
-#include "core/scanner.h"
-#include "core/parser.h"
+#include "../sys/sys_parser_ext.h"
+#include "../core/scanner.h"
+#include "../core/parser.h"
 
 // Access global parser state from parser.c
 extern Parser parser;

@@ -1,15 +1,15 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "web/wld_event_common.h" // Added for Result Type consistency
-#include "web/web_surface.h"      // Now includes its own dependencies
-#include "core/common.h"
-#include "core/object.h"
-#include "core/value.h"
-#include "core/vm.h"
-#include "native.h"
-#include "web/web_proxy.h"
-#include "web/web_surface.h"
+#include "../web/wld_event_common.h" // Added for Result Type consistency
+#include "../web/web_surface.h"      // Now includes its own dependencies
+#include "../core/common.h"
+#include "../core/object.h"
+#include "../core/value.h"
+#include "../core/vm.h"
+#include "../native.h"
+#include "../web/web_proxy.h"
+#include "../web/web_surface.h"
 
 // External Reference for Native Registration
 extern void defineNative(const char* name, NativeFn function);

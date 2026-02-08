@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "vm/vm_entangle.h"
-#include "core/memory.h"
-#include "core/vm.h"
-#include "core/table.h"
+#include "../vm/vm_entangle.h"
+#include "../core/memory.h"
+#include "../core/vm.h"
+#include "../core/table.h"
 
 // The Global Sovereign Registry Singleton
 WldEntangleRegistry globalEntangleRegistry;

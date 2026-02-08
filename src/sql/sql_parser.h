@@ -1,8 +1,8 @@
 #ifndef WALIA_SQL_PARSER_H
 #define WALIA_SQL_PARSER_H
 
-#include "db/db_common.h"
-#include "core/ast.h" // Reuse Walia Expr for WHERE clauses
+#include "../db/db_common.h"
+#include "../core/ast.h" // Reuse Walia Expr for WHERE clauses
 
 // ==========================================
 // SQL AST STRUCTURES

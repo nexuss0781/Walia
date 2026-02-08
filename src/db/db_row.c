@@ -5,7 +5,7 @@
 #include "../core/object.h"
 #include "../core/table.h"
 #include "../core/memory.h"
-#include "lib/lib_collections.h"
+#include "../lib/lib_collections.h"
 
 // ==========================================
 // SERIALIZATION (Walia Map -> Binary Row)

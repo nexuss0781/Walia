@@ -1,11 +1,11 @@
 #ifndef WALIA_VM_SHAPE_H
 #define WALIA_VM_SHAPE_H
 
-#include "core/common.h"
-#include "core/value.h"
-#include "core/object.h"
-#include "core/table.h"
-#include "vm/vm_magic_names.h"
+#include "../core/common.h"
+#include "../core/value.h"
+#include "../core/object.h"
+#include "../core/table.h"
+#include "../vm/vm_magic_names.h"
 
 // ==========================================
 // HIDDEN CLASS (SHAPE) STRUCTURE

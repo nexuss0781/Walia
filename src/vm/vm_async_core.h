@@ -2,9 +2,9 @@
 #ifndef WALIA_VM_ASYNC_CORE_H
 #define WALIA_VM_ASYNC_CORE_H
 
-#include "core/common.h"
-#include "core/value.h"
-#include "core/object.h"
+#include "../core/common.h"
+#include "../core/value.h"
+#include "../core/object.h"
 
 // ==========================================
 // SOVEREIGN FUTURE SPECIFICATION

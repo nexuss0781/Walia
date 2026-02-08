@@ -1,7 +1,7 @@
 #ifndef WALIA_SYS_ALLOCATOR_H
 #define WALIA_SYS_ALLOCATOR_H
 
-#include "core/common.h"
+#include "../core/common.h"
 
 // ==========================================
 // ALLOCATOR SPECIFICATIONS

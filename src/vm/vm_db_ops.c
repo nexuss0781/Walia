@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "core/common.h"
-#include "vm/vm_db_ops.h"
-#include "core/vm.h"
-#include "core/value.h"
+#include "../core/common.h"
+#include "../vm/vm_db_ops.h"
+#include "../core/vm.h"
+#include "../core/value.h"
 
 // ==========================================
 // HARDWARE ACCELERATION (SIMD)

@@ -7,7 +7,7 @@
 #include "value.h"
 #include "vm.h"
 #include "table.h"
-#include "effect.h"
+#include "../effect.h"
 
 void markObject(struct Obj* object) {
     if (object == NULL || object->isMarked) return;

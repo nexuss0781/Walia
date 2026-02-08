@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "tooling/tooling_nexus_widgets.h"
+#include "../tooling/tooling_nexus_widgets.h"
 
 // ==========================================
 // INTERNAL UI HELPERS

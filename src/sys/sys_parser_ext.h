@@ -1,8 +1,8 @@
 #ifndef WALIA_SYS_PARSER_EXT_H
 #define WALIA_SYS_PARSER_EXT_H
 
-#include "core/parser.h"
-#include "sys/sys_types.h"
+#include "../core/parser.h"
+#include "../sys/sys_types.h"
 
 // ==========================================
 // PARSER EXTENSION API

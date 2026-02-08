@@ -1,8 +1,8 @@
 #ifndef WALIA_TOOLING_ORACLE_LEXER_H
 #define WALIA_TOOLING_ORACLE_LEXER_H
 
-#include "core/common.h"
-#include "tooling/tooling_hash_scanner.h"
+#include "../core/common.h"
+#include "../tooling/tooling_hash_scanner.h"
 
 // ==========================================
 // ORACLE CONTRACT DEFINITION

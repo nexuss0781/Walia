@@ -4,7 +4,7 @@
 
 #include "db_sentry_jit.h"
 #include "../core/opcode.h"
-#include "vm/vm_db_ops.h"
+#include "../vm/vm_db_ops.h"
 #include "../core/memory.h"
 #include "../core/table.h"
 #include "../core/vm.h" // Fixed: Added for global 'vm' access

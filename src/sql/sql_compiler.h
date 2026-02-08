@@ -1,9 +1,9 @@
 #ifndef WALIA_SQL_COMPILER_H
 #define WALIA_SQL_COMPILER_H
 
-#include "sql/sql_parser.h"
-#include "core/chunk.h"
-#include "db/db_schema.h"
+#include "../sql/sql_parser.h"
+#include "../core/chunk.h"
+#include "../db/db_schema.h"
 
 // ==========================================
 // THE RELATIONAL JIT API

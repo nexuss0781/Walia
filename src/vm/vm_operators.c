@@ -2,11 +2,11 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "vm/vm_operators.h"
-#include "vm/vm_magic_names.h"
-#include "core/table.h"
-#include "core/vm.h"
-#include "core/object.h"
+#include "../vm/vm_operators.h"
+#include "../vm/vm_magic_names.h"
+#include "../core/table.h"
+#include "../core/vm.h"
+#include "../core/object.h"
 
 // ==========================================
 // OPERATOR OVERLOAD DISPATCH

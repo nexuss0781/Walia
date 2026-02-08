@@ -2,9 +2,9 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "lib/lib_tensor.h"
-#include "core/memory.h"
-#include "core/vm.h"
+#include "../lib/lib_tensor.h"
+#include "../core/memory.h"
+#include "../core/vm.h"
 
 // ==========================================
 // INTERNAL HELPERS

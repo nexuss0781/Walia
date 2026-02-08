@@ -1,8 +1,8 @@
 #ifndef WALIA_WLD_EVENT_COMMON_H
 #define WALIA_WLD_EVENT_COMMON_H
 
-#include "core/common.h"
-#include "core/value.h"
+#include "../core/common.h"
+#include "../core/value.h"
 
 // ==========================================
 // REACTOR CONFIGURATION

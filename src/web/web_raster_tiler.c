@@ -2,9 +2,9 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "web/web_raster_tiler.h"
-#include "core/memory.h"
-#include "db/db_dispatch.h"
+#include "../web/web_raster_tiler.h"
+#include "../core/memory.h"
+#include "../db/db_dispatch.h"
 
 // ==========================================
 // TILE-BOUNDS COLLISION ENGINE

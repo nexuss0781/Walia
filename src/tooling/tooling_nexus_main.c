@@ -5,10 +5,10 @@
 #include <unistd.h>
 #include <signal.h>
 
-#include "tooling/tooling_nexus_main.h"
-#include "tooling/tooling_nexus_bus.h"
-#include "tooling/tooling_nexus_canvas.h"
-#include "tooling/tooling_nexus_widgets.h"
+#include "../tooling/tooling_nexus_main.h"
+#include "../tooling/tooling_nexus_bus.h"
+#include "../tooling/tooling_nexus_canvas.h"
+#include "../tooling/tooling_nexus_widgets.h"
 
 // ==========================================
 // NEXUS INTERNAL STATE

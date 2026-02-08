@@ -1,7 +1,7 @@
 #ifndef WALIA_SYS_UNITS_CHECK_H
 #define WALIA_SYS_UNITS_CHECK_H
 
-#include "core/ast.h"
+#include "../core/ast.h"
 
 // ==========================================
 // PHYSICS SENTRY API

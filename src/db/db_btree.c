@@ -4,7 +4,7 @@
 #include "db_btree.h"
 #include "../core/object.h"
 #include "../core/vm.h"
-#include "lib/lib_collections.h"
+#include "../lib/lib_collections.h"
 
 // ==========================================
 // INTERNAL NODE ACCESS

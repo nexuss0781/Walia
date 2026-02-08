@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "vm/vm_magic_names.h"
-#include "core/memory.h"
-#include "core/object.h"
-#include "core/vm.h"
+#include "../vm/vm_magic_names.h"
+#include "../core/memory.h"
+#include "../core/object.h"
+#include "../core/vm.h"
 
 ObjString* vm_magic_strings[MAGIC_SENTINEL];
 

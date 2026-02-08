@@ -63,7 +63,7 @@ bool sys_pmmo_commit_page(uint32_t pageId, const void* buffer, uint32_t hash) {
     // 2. DISK FOLDING (Deduplication)
     // Check if another PageID is already using this exact logic hash.
     for (uint32_t i = 0; i < pageId; i++) {
-        if (master_disk_map[i].logicHash == hash && master_disk_map[i].reference_count > 0) {
+        if (master_disk_map[i].logicHash == hash && master_disk_map[i].referenceCount > 0) {
             // UFO-GRADE OPTIMIZATION: 
             // We do not write to the disk. We point this page to the 
             // existing physical sector.
@@ -86,7 +86,7 @@ bool sys_pmmo_commit_page(uint32_t pageId, const void* buffer, uint32_t hash) {
 
     // 4. ATOMIC CHECKPOINT
     // Mark the disk map as dirty for the Superblock commit.
-    markCard(&master_disk_map[pageId]);
+    // markCard(&master_disk_map[pageId]); // TODO: Implement kernel-level page dirtying
 
     return true;
 }

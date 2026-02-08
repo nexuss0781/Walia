@@ -1,9 +1,9 @@
 #ifndef WALIA_WEB_TRANS_INJECTOR_H
 #define WALIA_WEB_TRANS_INJECTOR_H
 
-#include "db/db_common.h"
-#include "db/db_pool.h"
-#include "web/web_trans_common.h"
+#include "../db/db_common.h"
+#include "../db/db_pool.h"
+#include "../web/web_trans_common.h"
 
 // ==========================================
 // INJECTION CONTEXT

@@ -1,9 +1,9 @@
 #ifndef WALIA_VM_GENE_H
 #define WALIA_VM_GENE_H
 
-#include "core/common.h"
-#include "core/object.h"
-#include "core/table.h"
+#include "../core/common.h"
+#include "../core/object.h"
+#include "../core/table.h"
 
 // ==========================================
 // GENETIC SPECIFICATIONS

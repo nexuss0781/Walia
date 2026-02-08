@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "tooling/tooling_ui.h"
-#include "tooling/tooling_diff.h"
+#include "../tooling/tooling_ui.h"
+#include "../tooling/tooling_diff.h"
 
 // ==========================================
 // INTERNAL UI UTILITIES

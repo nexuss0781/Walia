@@ -1,7 +1,7 @@
 #ifndef WALIA_SYS_CACHE_ALIGN_H
 #define WALIA_SYS_CACHE_ALIGN_H
 
-#include "core/common.h"
+#include "../core/common.h"
 
 // ==========================================
 // SOVEREIGN ALIGNMENT MACROS

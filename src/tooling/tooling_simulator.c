@@ -2,9 +2,9 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "tooling/tooling_simulator.h"
-#include "core/opcode.h"
-#include "core/value.h"
+#include "../tooling/tooling_simulator.h"
+#include "../core/opcode.h"
+#include "../core/value.h"
 
 // ==========================================
 // THE VOLATILE SANDBOX

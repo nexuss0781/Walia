@@ -2,17 +2,17 @@
 #include <string.h>
 #include <unistd.h> // Fixed: Added for sysconf and _SC_NPROCESSORS_ONLN
 
-#include "db/db_common.h"
-#include "db/db_pager.h"
-#include "db/db_dispatch.h"
-#include "db/db_sqe_sql.h"
-#include "db/db_sqe_nosql.h"
-#include "db/db_catalog.h"      // Fixed: Provides WldEntryType and db_catalog_lookup
-#include "lib/lib_collections.h" // Fixed: Provides walia_list_new
-#include "core/vm.h"
-#include "core/object.h"
+#include "../db/db_common.h"
+#include "../db/db_pager.h"
+#include "../db/db_dispatch.h"
+#include "../db/db_sqe_sql.h"
+#include "../db/db_sqe_nosql.h"
+#include "../db/db_catalog.h"      // Fixed: Provides WldEntryType and db_catalog_lookup
+#include "../lib/lib_collections.h" // Fixed: Provides walia_list_new
+#include "../core/vm.h"
+#include "../core/object.h"
 
-#include "native.h"
+#include "../native.h"
 
 // External Substrate References
 // (Now resolved via headers)

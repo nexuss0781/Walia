@@ -2,9 +2,9 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "web/wld_event_loop.h"
-#include "core/object.h"
-#include "core/vm.h"
+#include "../web/wld_event_loop.h"
+#include "../core/object.h"
+#include "../core/vm.h"
 
 // ==========================================
 // CORE ORCHESTRATION LOGIC

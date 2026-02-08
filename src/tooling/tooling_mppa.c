@@ -4,14 +4,14 @@
 #include <unistd.h>
 #include <string.h>
 
-#include "tooling/tooling_mppa.h"
-#include "tooling/tooling_ledger.h"
-#include "tooling/tooling_registry.h"
-#include "tooling/tooling_simulator.h"
-#include "db/db_dispatch.h"
-#include "core/parser.h"
-#include "core/compiler.h"
-#include "core/memory.h"
+#include "../tooling/tooling_mppa.h"
+#include "../tooling/tooling_ledger.h"
+#include "../tooling/tooling_registry.h"
+#include "../tooling/tooling_simulator.h"
+#include "../db/db_dispatch.h"
+#include "../core/parser.h"
+#include "../core/compiler.h"
+#include "../core/memory.h"
 
 // ==========================================
 // PARALLEL TASK QUEUE

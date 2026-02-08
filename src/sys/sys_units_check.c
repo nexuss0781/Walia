@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "sys/sys_units_check.h"
-#include "sys/sys_units_math.h"
-#include "tooling/tooling_ledger.h" // For error reporting
+#include "../sys/sys_units_check.h"
+#include "../sys/sys_units_math.h"
+#include "../tooling/tooling_ledger.h" // For error reporting
 
 // ==========================================
 // REALITY VALIDATION ENGINE

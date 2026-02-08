@@ -1,7 +1,7 @@
 #ifndef WALIA_SYS_HARDWARE_PROBE_H
 #define WALIA_SYS_HARDWARE_PROBE_H
 
-#include "core/common.h"
+#include "../core/common.h"
 
 // ==========================================
 // TOPOLOGY SPECIFICATIONS

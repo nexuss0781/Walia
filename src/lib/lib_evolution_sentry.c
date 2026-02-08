@@ -6,10 +6,10 @@
     #include <immintrin.h>
 #endif
 
-#include "lib/lib_evolution_sentry.h"
-#include "lib/lib_collections.h"
-#include "core/memory.h"
-#include "db/db_slotted.h"
+#include "../lib/lib_evolution_sentry.h"
+#include "../lib/lib_collections.h"
+#include "../core/memory.h"
+#include "../db/db_slotted.h"
 
 // ==========================================
 // SIMD COMPARATOR (Hardware Accelerated)

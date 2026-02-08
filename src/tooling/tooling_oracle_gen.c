@@ -3,10 +3,10 @@
 #include <string.h>
 #include <time.h>
 
-#include "tooling/tooling_oracle_gen.h"
-#include "tooling/tooling_oracle_lexer.h"
-#include "tooling/tooling_ui.h"
-#include "core/hash.h"
+#include "../tooling/tooling_oracle_gen.h"
+#include "../tooling/tooling_oracle_lexer.h"
+#include "../tooling/tooling_ui.h"
+#include "../core/hash.h"
 
 // ==========================================
 // INTERNAL FORMATTING

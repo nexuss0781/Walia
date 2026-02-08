@@ -1,7 +1,7 @@
 #include <stdio.h>
-#include "vm/vm_traps.h"
-#include "web/web_proxy.h"
-#include "core/object.h"
+#include "../vm/vm_traps.h"
+#include "../web/web_proxy.h"
+#include "../core/object.h"
 
 // ==========================================
 // SOVEREIGN INTERCEPTION LOGIC
