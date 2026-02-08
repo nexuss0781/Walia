@@ -1,6 +1,6 @@
 #include "../include/sys_shell.h"
 #include "../include/driver_vga.h"
-#include "../../src/tooling/tooling_nexus_bus.h"
+#include "src/tooling/tooling_nexus_bus.h"
 #include "../include/walia_kernel_base.h"
 
 // INTERNAL BUFFER (The Edit Segment)

@@ -1,9 +1,9 @@
 #include "../include/sys_dedup_fs.h"
 #include "../include/sys_pmmo.h"
 #include "../include/driver_serial.h"
-#include "../../src/db/db_btree.h" 
-#include "../../src/core/object.h"
-#include "../../src/core/memory.h"
+#include "src/db/db_btree.h"
+#include "src/core/object.h"
+#include "src/core/memory.h"
 
 // Global handle to the persistent index
 // Global handle to the persistent index
