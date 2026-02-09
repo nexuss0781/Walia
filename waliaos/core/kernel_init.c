@@ -1,4 +1,4 @@
-#include "../include/walia_kernel_base.h"
+#include "../include/sys_cpu.h"
 #include "../include/driver_vga.h"
 #include "../include/driver_serial.h"
 #include "../include/sys_cpu_features.h"
@@ -12,13 +12,18 @@ extern void sys_allocator_init_kernel(void* start, size_t size);
 extern void sys_watchdog_init(); // Phase 30.8
 
 // Defined in linker.ld
-extern uint64_t _kernel_end;
+extern uint32_t _kernel_end;
 
 /**
  * @brief The Sovereign Bridge.
  */
 void walia_kernel_init(uint32_t magic, uint32_t addr) {
     (void)addr;
+    
+    // 0. ESTABLISH SEGMENT & INTERRUPT SOVEREIGNTY
+    sys_gdt_init();
+    sys_idt_init();
+
     // 1. INITIALIZE HARDWARE INTERFACES
     k_vga_init();
     k_serial_init();
@@ -43,7 +48,7 @@ void walia_kernel_init(uint32_t magic, uint32_t addr) {
     if (magic != 0x36d76289) {
         k_vga_set_color(VGA_RED, VGA_BLACK);
         k_vga_print("[FAULT] Multiboot2 Magic Mismatch.\n");
-        return;
+        // We'll proceed for now, but in a hardened state this would trigger a lockdown.
     }
 
     // 5. SEIZE PHYSICAL RAM

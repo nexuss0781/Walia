@@ -6,7 +6,7 @@
 # 1. TOOLCHAIN (Standard x86_64 Freestanding)
 CC      := gcc
 AS      := as
-LD      := gcc
+LD      := ld
 OBJCOPY := objcopy
 
 # 2. PATHS & DIRECTORIES
@@ -18,8 +18,8 @@ LIB_DIR   := lib
 DRV_DIR   := drivers
 
 # 3. COMPILATION FLAGS (UFO-GRADE OPTIMIZATION)
-CFLAGS := -m32 -ffreestanding -O3 -Wall -Wextra -Iinclude/libc -Iinclude -I../ -fno-stack-protector -fno-pic -mno-red-zone -DWALIA_KERNEL
-LDFLAGS := -m32 -nostdlib -T linker.ld
+CFLAGS := -m32 -ffreestanding -O3 -Wall -Wextra -Iinclude/libc -Iinclude -I../ -fno-stack-protector -fno-pic -fno-pie -mno-red-zone -DWALIA_KERNEL
+LDFLAGS := -melf_i386 -static -T linker.ld
 
 # 4. SOURCE DISCOVERY & OBJECT MAPPING
 CORE_SOURCES := $(wildcard $(CORE_DIR)/*.c)
@@ -30,14 +30,13 @@ SHARED_SOURCES := ../src/core/vm.c ../src/core/object.c ../src/core/memory.c ../
                  ../src/sys/sys_layout.c ../src/sys/sys_types.c ../src/sys/sys_units_registry.c \
                  ../src/sys/sys_units_check.c ../src/sys/sys_units_math.c ../src/sys/sys_assembler.c \
                  ../src/compiler_pipe.c ../src/db/db_sentry_parser.c
-S_SOURCES := boot.S
 
-# Map sources to the local build directory to avoid clashing with host build
-OBJECTS := $(addprefix $(BUILD_DIR)/obj/, $(notdir $(CORE_SOURCES:.c=.o))) \
+# Ensure boot.o is linked first
+OBJECTS := $(BUILD_DIR)/obj/boot.o \
+           $(addprefix $(BUILD_DIR)/obj/, $(notdir $(CORE_SOURCES:.c=.o))) \
            $(addprefix $(BUILD_DIR)/obj/, $(notdir $(LIB_SOURCES:.c=.o))) \
            $(addprefix $(BUILD_DIR)/obj/, $(notdir $(DRV_SOURCES:.c=.o))) \
-           $(addprefix $(BUILD_DIR)/obj/, $(notdir $(SHARED_SOURCES:.c=.o))) \
-           $(addprefix $(BUILD_DIR)/obj/, $(S_SOURCES:.S=.o))
+           $(addprefix $(BUILD_DIR)/obj/, $(notdir $(SHARED_SOURCES:.c=.o)))
 
 # 5. MASTER TARGETS
 .PHONY: all clean kernel iso run
