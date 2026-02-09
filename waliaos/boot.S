@@ -17,7 +17,7 @@ header_start:
     .long 0xe85250d6                # Magic Number (Multiboot2)
     .long 0                         # Architecture (i386/32-bit protected mode start)
     .long header_end - header_start # Header length
-    .long 0x100000000 - (0xe85250d6 + 0 + (header_end - header_start)) # Checksum
+    .long -(0xe85250d6 + 0 + (header_end - header_start)) # Checksum
 
     # Tag: Information Request
     .short 1
