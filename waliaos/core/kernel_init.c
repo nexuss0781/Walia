@@ -45,7 +45,7 @@ void walia_kernel_init(uint32_t magic, uint32_t addr) {
     sys_watchdog_init();
 
     // 4. VALIDATE BOOTLOADER
-    if (magic != 0x36d76289) {
+    if (magic != 0x36d76289 && magic != 0x2BADB002) {
         k_vga_set_color(VGA_RED, VGA_BLACK);
         k_vga_print("[FAULT] Multiboot2 Magic Mismatch.\n");
         // We'll proceed for now, but in a hardened state this would trigger a lockdown.
