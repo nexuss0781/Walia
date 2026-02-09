@@ -17,7 +17,8 @@ SECTIONS
     .text : ALIGN(4K)
     {
         _kernel_start = .;
-        /* Multiboot2 Header MUST be at the very beginning of the binary */
+        /* Multiboot Headers MUST be at the very beginning of the binary in the first 32KB */
+        KEEP(*(.multiboot_legacy))
         KEEP(*(.multiboot))
         *(.text)
     }
