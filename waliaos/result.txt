@@ -1,5 +1,0 @@
-core/sys_final_fusion.c:10:10: fatal error: ../src/core/vm.h: No such file or directory
-   10 | #include "../src/core/vm.h"
-      |          ^~~~~~~~~~~~~~~~~~
-compilation terminated.
-make: *** [Makefile:53: build/obj/sys_final_fusion.o] Error 1
