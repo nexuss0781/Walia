@@ -98,22 +98,25 @@ static void cmd_cpu() {
     k_vga_set_color(VGA_WHITE, VGA_BLACK);
     
     k_vga_print("  SSE:       ");
-    k_vga_print(global_cpu_caps.has_sse ? "YES\n" : "NO\n");
-    
-    k_vga_print("  SSE2:      ");
-    k_vga_print(global_cpu_caps.has_sse2 ? "YES\n" : "NO\n");
+    k_vga_print(sys_cpu_has(CPU_FEAT_SSE) ? "YES\n" : "NO\n");
     
     k_vga_print("  AVX:       ");
-    k_vga_print(global_cpu_caps.has_avx ? "YES\n" : "NO\n");
+    k_vga_print(sys_cpu_has(CPU_FEAT_AVX) ? "YES\n" : "NO\n");
+    
+    k_vga_print("  AVX-512:   ");
+    k_vga_print(sys_cpu_has(CPU_FEAT_AVX512) ? "YES\n" : "NO\n");
     
     k_vga_print("  RDRAND:    ");
-    k_vga_print(global_cpu_caps.has_rdrand ? "YES\n" : "NO\n");
+    k_vga_print(sys_cpu_has(CPU_FEAT_RDRAND) ? "YES\n" : "NO\n");
     
     k_vga_print("  APIC:      ");
-    k_vga_print(global_cpu_caps.has_apic ? "YES\n" : "NO\n");
+    k_vga_print(sys_cpu_has(CPU_FEAT_APIC) ? "YES\n" : "NO\n");
     
     k_vga_print("  TSC:       ");
-    k_vga_print(global_cpu_caps.has_tsc ? "YES\n" : "NO\n");
+    k_vga_print(sys_cpu_has(CPU_FEAT_TSC) ? "YES\n" : "NO\n");
+    
+    k_vga_print("  MSR:       ");
+    k_vga_print(sys_cpu_has(CPU_FEAT_MSR) ? "YES\n" : "NO\n");
     
     k_vga_print("\n");
 }
