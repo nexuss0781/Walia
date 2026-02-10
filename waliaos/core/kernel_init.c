@@ -23,6 +23,7 @@ void walia_kernel_init(uint32_t magic, uint32_t addr) {
     // 0. ESTABLISH SEGMENT & INTERRUPT SOVEREIGNTY
     sys_gdt_init();
     sys_idt_init();
+    sys_paging_init();
 
     // 1. INITIALIZE HARDWARE INTERFACES
     k_vga_init();
