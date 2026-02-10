@@ -2,6 +2,7 @@
 #include <string.h>
 
 #include "memory.h"
+#include "object.h"
 #include "value.h"
 
 // Initialize the array to empty state
@@ -40,8 +41,7 @@ void printValue(Value value) {
     } else if (IS_NUMBER(value)) {
         printf("%g", AS_NUMBER(value)); // %g strips trailing zeros
     } else if (IS_OBJ(value)) {
-        // Will be expanded in Phase 2 for strings/objects
-        printf("<obj>"); 
+        printObject(value);
     }
 #else
     // Fallback printing logic
@@ -49,7 +49,68 @@ void printValue(Value value) {
         case VAL_BOOL:   printf(AS_BOOL(value) ? "true" : "false"); break;
         case VAL_NIL:    printf("nil"); break;
         case VAL_NUMBER: printf("%g", AS_NUMBER(value)); break;
-        case VAL_OBJ:    printf("<obj>"); break;
+        case VAL_OBJ:    printObject(value); break;
+    }
+#endif
+}
+
+const char* valueTypeName(Value value) {
+#ifdef NAN_BOXING
+    if (IS_BOOL(value)) return "bool";
+    if (IS_NIL(value)) return "nil";
+    if (IS_NUMBER(value)) return "number";
+    if (!IS_OBJ(value)) return "unknown";
+
+    switch (OBJ_TYPE(value)) {
+        case OBJ_STRING: return "string";
+        case OBJ_FUNCTION: return "function";
+        case OBJ_NATIVE: return "native";
+        case OBJ_CLOSURE: return "closure";
+        case OBJ_UPVALUE: return "upvalue";
+        case OBJ_CLASS: return "class";
+        case OBJ_INSTANCE: return "instance";
+        case OBJ_BOUND_METHOD: return "bound_method";
+        case OBJ_VECTOR: return "vector";
+        case OBJ_STREAM: return "stream";
+        case OBJ_FUTURE: return "future";
+        case OBJ_GENE: return "gene";
+        case OBJ_GENOME: return "genome";
+        case OBJ_CODE_BLOB: return "code_blob";
+        case OBJ_LIST: return "list";
+        case OBJ_MAP: return "map";
+        case OBJ_CONTINUATION: return "continuation";
+        case OBJ_WAIT_GROUP: return "wait_group";
+        default: return "object";
+    }
+#else
+    switch (value.type) {
+        case VAL_BOOL: return "bool";
+        case VAL_NIL: return "nil";
+        case VAL_NUMBER: return "number";
+        case VAL_OBJ: break;
+        default: return "unknown";
+    }
+
+    switch (OBJ_TYPE(value)) {
+        case OBJ_STRING: return "string";
+        case OBJ_FUNCTION: return "function";
+        case OBJ_NATIVE: return "native";
+        case OBJ_CLOSURE: return "closure";
+        case OBJ_UPVALUE: return "upvalue";
+        case OBJ_CLASS: return "class";
+        case OBJ_INSTANCE: return "instance";
+        case OBJ_BOUND_METHOD: return "bound_method";
+        case OBJ_VECTOR: return "vector";
+        case OBJ_STREAM: return "stream";
+        case OBJ_FUTURE: return "future";
+        case OBJ_GENE: return "gene";
+        case OBJ_GENOME: return "genome";
+        case OBJ_CODE_BLOB: return "code_blob";
+        case OBJ_LIST: return "list";
+        case OBJ_MAP: return "map";
+        case OBJ_CONTINUATION: return "continuation";
+        case OBJ_WAIT_GROUP: return "wait_group";
+        default: return "object";
     }
 #endif
 }

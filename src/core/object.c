@@ -205,10 +205,13 @@ void printObject(Value value) {
             printf("<waitgroup>");
             break;
         case OBJ_GENE:
-            printf("<gene %s>", AS_CLASS(value)->name->chars); 
+            // Gene structures live in `src/vm/vm_gene.h` (higher layer).
+            // Avoid cross-layer includes here; keep printing safe and non-crashing.
+            printf("<gene>");
             break;
         case OBJ_GENOME:
-            printf("<individual>");
+            // Genome structures live in `src/vm/vm_gene.h` (higher layer).
+            printf("<genome>");
             break;
     }
 }

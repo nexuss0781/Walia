@@ -194,4 +194,10 @@ ObjBoundMethod* newBoundMethod(Value receiver, ObjClosure* method);
 #define AS_BOUND_METHOD(value) ((ObjBoundMethod*)AS_OBJ(value))
 #define AS_CONTINUATION(value) ((ObjContinuation*)AS_OBJ(value))
 
+// ==========================================
+// DEBUG PRINTING
+// ==========================================
+// Implemented in `object.c`. Kept here so `value.c` can delegate object printing.
+void printObject(Value value);
+
 #endif
