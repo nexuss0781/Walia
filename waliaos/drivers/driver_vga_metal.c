@@ -53,3 +53,13 @@ void k_vga_putc(char c) {
 void k_vga_print(const char* str) {
     while (*str) k_vga_putc(*str++);
 }
+
+void k_vga_backspace() {
+    if (cursor_x > 0) {
+        cursor_x--;
+    } else if (cursor_y > 0) {
+        cursor_y--;
+        cursor_x = VGA_WIDTH - 1;
+    }
+    VGA_MEM[cursor_y * VGA_WIDTH + cursor_x] = (uint16_t)' ' | (uint16_t)current_color << 8;
+}

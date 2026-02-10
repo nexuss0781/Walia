@@ -215,6 +215,27 @@ isr_common_stub:
     add $8, %esp        # Cleans up the pushed error code and pushed ISR number
     iret                # pops 5 things at once: CS, EIP, EFLAGS, SS, and ESP
 
+# ==========================================
+# IRQ STUBS (Hardware Interrupts)
+# These simply acknowledge the PIC and return.
+# ==========================================
+
+.global irq0
+irq0:   # Timer (IRQ0 -> Vector 32)
+    pusha
+    mov $0x20, %al
+    outb %al, $0x20    # Send EOI to master PIC
+    popa
+    iret
+
+.global irq1
+irq1:   # Keyboard (IRQ1 -> Vector 33)
+    pusha
+    mov $0x20, %al
+    outb %al, $0x20    # Send EOI to master PIC
+    popa
+    iret
+
 # 3. MINIMAL SOVEREIGN GDT
 .align 8
 gdt_start:
