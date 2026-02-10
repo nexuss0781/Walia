@@ -50,17 +50,30 @@ void sys_pic_remap() {
 }
 
 extern uint32_t static_isr_table[];
+extern void irq0();
+extern void irq1();
 
 void sys_idt_init() {
     idt_ptr.limit = sizeof(idt_entry_t) * 256 - 1;
     idt_ptr.base  = (uint32_t)&idt_entries;
 
-    // Use the ISR table from assembly
+    // CPU Exception handlers (vectors 0-31)
     for(int i = 0; i < 32; i++) {
         idt_set_gate(i, static_isr_table[i], 0x08, 0x8E);
     }
 
+    // Hardware IRQ handlers (vectors 32-33)
+    idt_set_gate(32, (uint32_t)irq0, 0x08, 0x8E);  // Timer
+    idt_set_gate(33, (uint32_t)irq1, 0x08, 0x8E);  // Keyboard
+
     sys_pic_remap();
+    
+    // Unmask IRQ0 (Timer) and IRQ1 (Keyboard) only
+    // Mask = 0xFC = 11111100 (bits 0 and 1 cleared = unmasked)
+    outb(0x21, 0xFC);
+    // Keep slave PIC fully masked
+    outb(0xA1, 0xFF);
+    
     idt_flush((uint32_t)&idt_ptr);
     k_vga_print("[HARDEN] IDT Gates Locked & PIC Remapped.\n");
 }
