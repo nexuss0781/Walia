@@ -23,5 +23,9 @@ void k_vga_putc(char c);
 void k_vga_print(const char* str);
 void k_vga_set_color(WldVgaColor fg, WldVgaColor bg);
 void k_vga_clear();
+void k_vga_backspace();
+
+// 4. SOVEREIGN DIAGNOSTIC SHELL
+void sys_shell_run();
 
 #endif // WALIA_DRIVER_VGA_H

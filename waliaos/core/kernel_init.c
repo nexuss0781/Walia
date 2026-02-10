@@ -62,11 +62,16 @@ void walia_kernel_init(uint32_t magic, uint32_t addr) {
     // Read TjMax to prepare the governor.
     sys_thermal_init();
 
-    // 7. HANDOVER TO WALIA LOGIC
+    // 7. HANDOVER TO SOVEREIGN SHELL
     k_vga_set_color(VGA_GREEN, VGA_BLACK);
-    k_vga_print("[READY] Launching Sovereign Mind...\n\n");
-    walia_vm_init();
+    k_vga_print("[READY] Launching Sovereign Mind...\n");
     
-    // Safety Halt
+    // Enable interrupts so the keyboard IRQ1 can fire
+    __asm__ volatile ("sti");
+    
+    // Launch the interactive diagnostic shell
+    sys_shell_run();
+    
+    // Safety Halt (should never reach here)
     while (1) { __asm__ volatile ("hlt"); }
 }
