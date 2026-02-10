@@ -20,19 +20,22 @@ header_start:
     .long -(0xe85250d6 + 0 + (header_end - header_start)) # Checksum
 
     # Tag: Information Request
+    .align 8
     .short 1
     .short 0
-    .long 12
+    .long 16
     .long 1                         # Console info
     .long 2                         # Boot command line
     
     # Tag: Entry Point (Explicit)
+    .align 8
     .short 3
     .short 0
     .long 12
     .long _start
 
     # End Tag
+    .align 8
     .short 0
     .short 0
     .long 8
