@@ -83,7 +83,7 @@ uninstall:
 
 # 6. QUALITY ASSURANCE & DIAGNOSTICS
 test: $(BIN)
-	@./$(BIN) --test
+	@./$(BIN) --test tests/core_suite.wal
 
 debug: CFLAGS += -g -DDEBUG_TRACE_EXECUTION -DDEBUG_PRINT_CODE
 debug: clean all

@@ -1,0 +1,18 @@
+// Walia Core Smoke Tests
+// Run via: `./walia --test tests/core_suite.wal`
+
+fun test_print_values() {
+  // Ensure printing basic values doesn't crash.
+  print true;
+  print false;
+  print nil;
+  print 123;
+  print 123.456;
+}
+
+fun test_print_objects() {
+  // Ensure printing common objects doesn't crash.
+  var s = "hello";
+  print s;
+}
+
