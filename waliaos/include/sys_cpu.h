@@ -18,8 +18,9 @@ static inline void io_wait(void) {
     outb(0x80, 0);
 }
 
-// --- GDT & IDT ---
+// --- GDT, IDT & PAGING ---
 void sys_gdt_init();
 void sys_idt_init();
+void sys_paging_init();
 
 #endif // WALIA_SYS_CPU_H
