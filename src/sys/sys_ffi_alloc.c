@@ -5,6 +5,15 @@
 
 #include "../sys/sys_ffi_alloc.h"
 
+// Fix for MAP_ANONYMOUS on some systems
+#ifndef MAP_ANONYMOUS
+#ifdef __MAP_ANONYMOUS
+#define MAP_ANONYMOUS __MAP_ANONYMOUS
+#else
+#define MAP_ANONYMOUS 0x20
+#endif
+#endif
+
 // ==========================================
 // INTERNAL UTILITIES
 // ==========================================
