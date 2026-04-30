@@ -8,7 +8,7 @@
 
 **_Your Code Doesn't Just Run—It Lives Forever_**
 
-[Documentation](https://nexuss0781.github.io/Walia-docs/) • [Academy](#-learning-path) • [Philosophy](#-why-walia) • [Examples](#-code-examples)
+[📚 Documentation](https://nexuss0781.github.io/Walia-docs/) • [🎓 Academy](#-learning-path) • [💡 Philosophy](#-why-walia) • [💻 Examples](#-code-examples)
 
 </div>
 
