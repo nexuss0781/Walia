@@ -2,13 +2,15 @@
 
 <div align="center">
 
+![Walia Animated Banner](https://media.giphy.com/media/3o7abKhOpu0NwenH3O/giphy.gif)
+
 ![Walia Banner](https://img.shields.io/badge/Walia-5th_Gen_Language-FF6B35?style=for-the-badge)
 ![License](https://img.shields.io/badge/License-Sovereign-00D4AA?style=for-the-badge)
 ![Status](https://img.shields.io/badge/Status-Active_Development-7B2CBF?style=for-the-badge)
 
 **_Your Code Doesn't Just Run—It Lives Forever_**
 
-[Documentation](https://nexuss0781.github.io/Walia-docs/) • [Academy](#-learning-path) • [Philosophy](#-why-walia) • [Examples](#-code-examples)
+[📚 Documentation](https://nexuss0781.github.io/Walia-docs/) • [🎓 Academy](#-learning-path) • [💡 Philosophy](#-why-walia) • [💻 Examples](#-code-examples)
 
 </div>
 
