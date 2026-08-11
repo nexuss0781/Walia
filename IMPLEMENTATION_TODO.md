@@ -595,7 +595,7 @@ Record one line per completed slice. Keep the newest entry at the top and link t
 
 | Date | Phase / work item | Evidence | Commit / PR | Notes |
 |---|---|---|---|---|
-| 2026-08-12 | Phase 0 baseline, safety nets, and diagnostics completed. | Release/debug host builds and tests, WaliOS build, ASan/UBSan, Valgrind, five-run benchmark, telemetry smoke test; see Phase 0 Evidence. | Pending | One roadmap-inventory reconciliation item remains explicitly tracked. |
+| 2026-08-12 | Phase 0 baseline, safety nets, and diagnostics completed. | Release/debug host builds and tests, WaliOS build, ASan/UBSan, Valgrind, five-run benchmark, telemetry smoke test; see Phase 0 Evidence. | `98c77e7` | One roadmap-inventory reconciliation item remains explicitly tracked. |
 | 2026-08-12 | Master TODO created; roadmap inventory consolidated. | Repository inspection; no source implementation started. | `0acbbc2` | Empty root integration roadmap remains a known placeholder. |
 
 ---
