@@ -1,6 +1,11 @@
 #include "../include/sys_cpu.h"
 #include "../include/driver_vga.h"
 
+// CR0/CR3/CR4 are privileged and the current implementation is 32-bit
+// kernel-specific. Host builds must remain linkable and must not emit or run
+// these instructions.
+#if defined(WALIA_KERNEL) && defined(__i386__)
+
 // Page Directory alignment is critical (4KB)
 // Using PSE (Page Size Extension) for 4MB pages - no page tables needed!
 uint32_t page_directory[1024] __attribute__((aligned(4096)));
@@ -42,3 +47,12 @@ void sys_paging_init() {
 
     k_vga_print("[HARDEN] Paging Unit Active (PSE 4MB, 1GB Identity Mapped).\n");
 }
+
+#else
+
+void sys_paging_init(void) {
+    // Paging is established by the host OS for user-space builds. A kernel
+    // implementation for another architecture must provide its own backend.
+}
+
+#endif

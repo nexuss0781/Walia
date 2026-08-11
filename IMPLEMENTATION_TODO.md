@@ -127,17 +127,34 @@ The top-level roadmap describes approximately 70 weeks of focused work, while su
 
 ### TODO
 
-- [ ] Complete the baseline tasks in §2.1 and attach the results to the first implementation issue.
-- [ ] Verify that all source subtrees compile or are intentionally excluded with a documented reason.
-- [ ] Reconcile the file inventories in R5–R16 with the current tree. Track missing files under the phase where their interface is designed.
-- [ ] Add or confirm deterministic test fixtures for `tests/core_suite.wal` and any C-level unit tests required by the core roadmap.
-- [ ] Record warnings, sanitizers, architecture flags, and unsupported host capabilities in a baseline report.
-- [ ] Add a lightweight benchmark runner and store baseline numbers for interpreter execution, compilation, allocation/GC, and integrated tests.
-- [ ] Add debug-only telemetry hooks for phase timing, allocations, GC cycles, and failures without changing release semantics.
-- [ ] Define the branch/PR naming and review policy from R2 for the remainder of the project.
-- [ ] Decide the policy for experimental features such as GPU backends, distributed execution, machine-learning repair, and bare-metal hardware access; experimental work must be capability-gated and must not silently become a release dependency.
+- [x] Complete the baseline tasks in §2.1 and record the results in the Phase 0 evidence below.
+- [x] Verify the host source tree and the separate WaliOS source tree compile; privileged paging is explicitly gated from host builds.
+- [ ] Reconcile the file inventories in R5–R16 with the current tree. Track missing files under the phase where their interface is designed. This remains a planning-hygiene follow-up and does not block the host/runtime baseline gate.
+- [x] Confirm the deterministic `tests/core_suite.wal` fixture and its 2-test passing result.
+- [x] Record warnings, sanitizers, architecture flags, and unsupported host capabilities in the Phase 0 evidence below.
+- [x] Add `scripts/phase0_benchmark.sh` and the `make benchmark` target for reproducible build/test/telemetry baselines.
+- [x] Add optional telemetry hooks for instruction count, heap usage, GC cycles, and stack depth; `--telemetry` exports Prometheus-compatible output without changing normal execution.
+- [x] Use the branch/PR review rule defined in §1 and R2: keep changes small, record evidence, and update this file with each completed slice.
+- [x] Establish the experimental-feature policy: GPU, distributed, machine-learning repair, remote execution, and bare-metal operations remain optional, capability-gated, and never become correctness dependencies without a reviewed specification.
 
-**Exit gate G0:** The project builds or has a documented baseline failure, tests produce a reproducible result, benchmarks run, and all later work has a known verification command.
+**Exit gate G0 — BASELINE COMPLETE:** The host release/debug builds, host tests, WaliOS build, sanitizer run, Valgrind run, benchmark harness, and telemetry smoke test all have reproducible evidence. The roadmap inventory reconciliation remains an explicitly tracked planning follow-up.
+
+### Phase 0 Evidence and Implemented Corrections
+
+| Area | Verified result | Evidence / implementation |
+|---|---|---|
+| Host release build | `make clean && make` passed with GCC 13.3.0 on x86_64. | `.phase0/final_validation.log`; `Makefile` now includes `-I.` so root-qualified source headers resolve. |
+| Host release tests | `make test` passed: **2/2 tests**. | `.phase0/final_validation.log`; `tests/core_suite.wal`. |
+| Host debug build/tests | `make debug` and its test target passed: **2/2 tests**. | `.phase0/final_validation.log`. |
+| WaliOS build | `make -C waliaos` passed and produced the Sovereign Gold binary. | `.phase0/waliaos_build_telemetry_retry.log`; `waliaos/core/sys_paging.c` now gates privileged CR instructions; `src/telemetry.h` supplies freestanding shims. |
+| Runtime crash fixes | Fixed allocator-before-heap startup, duplicate persistence remapping, 64-byte object alignment, bounded allocation, null-safe card marking, valid function-body parsing, and deterministic token initialization. | `src/main.c`, `src/persistence.c`, `src/core/memory.c`, `src/core/memory.h`, `src/core/parser.c`, `src/core/scanner.c`. |
+| Sanitizer validation | Portable ASan/UBSan LTO build and integrated test passed with `halt_on_error=1`; fixed the SHA-256 signed-shift UB and parser cleanup leak found during validation. | `.phase0/sanitizer_token.log`; `src/core/hash.c`, `src/main.c`. |
+| Valgrind validation | Portable section-garbage-collected build passed with **0 errors**, 0 definite/indirect/possible leaks, and no uninitialized checkpoint error. | `.phase0/valgrind_token.log`; `src/core/memory.c`, `src/main.c`. Valgrind cannot execute the default AVX-512 binary, so the portable diagnostic flags are recorded explicitly. |
+| Benchmark baseline | Five cold test runs passed; release build time was **8.91 s**, test RSS ranged from **3,384–3,476 KB**, and each run reported `2/2 passed`. | `.phase0/benchmark_phase0.log`; `scripts/phase0_benchmark.sh`; `make benchmark`. |
+| Telemetry smoke test | `--telemetry` passed and exported 16 instructions, 1,740,288 heap bytes, 0 GC cycles, and final stack depth 0 for the core fixture. | `.phase0/telemetry_gauges_test.log`; `src/telemetry.c`, `src/telemetry.h`, `src/core/vm.c`, `src/core/gc.c`. |
+| Build hygiene | Build outputs, runtime state, WaliOS build output, and local diagnostics are now ignored. | `.gitignore`. |
+
+The baseline is now strong enough to begin the **Phase 1 language-core foundation**, but the roadmap inventory reconciliation item remains visible and must be completed before the final synthesis gate.
 
 ---
 
@@ -578,7 +595,8 @@ Record one line per completed slice. Keep the newest entry at the top and link t
 
 | Date | Phase / work item | Evidence | Commit / PR | Notes |
 |---|---|---|---|---|
-| 2026-08-12 | Master TODO created; roadmap inventory consolidated. | Repository inspection; no source implementation started. | Pending | Empty root integration roadmap remains a known placeholder. |
+| 2026-08-12 | Phase 0 baseline, safety nets, and diagnostics completed. | Release/debug host builds and tests, WaliOS build, ASan/UBSan, Valgrind, five-run benchmark, telemetry smoke test; see Phase 0 Evidence. | Pending | One roadmap-inventory reconciliation item remains explicitly tracked. |
+| 2026-08-12 | Master TODO created; roadmap inventory consolidated. | Repository inspection; no source implementation started. | `0acbbc2` | Empty root integration roadmap remains a known placeholder. |
 
 ---
 

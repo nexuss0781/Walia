@@ -11,6 +11,8 @@
 // never triggers a memory allocation (which could trigger a GC).
 
 static uint64_t counters[METRIC_SENTINEL];
+static bool telemetryEnabled = false;
+
 static const char* metricNames[] = {
     "walia_instructions_total",
     "walia_gc_cycles_total",
@@ -34,13 +36,22 @@ static const char* metricHelp[] = {
 // ==========================================
 
 void initTelemetry() {
+    telemetryEnabled = false;
     for (int i = 0; i < METRIC_SENTINEL; i++) {
         counters[i] = 0;
     }
 }
 
+void setTelemetryEnabled(bool enabled) {
+    telemetryEnabled = enabled;
+}
+
+bool isTelemetryEnabled() {
+    return telemetryEnabled;
+}
+
 void recordMetric(WaliaMetric metric, uint64_t value) {
-    if (metric >= METRIC_SENTINEL) return;
+    if (!telemetryEnabled || metric >= METRIC_SENTINEL) return;
 
     // Gauge vs Counter Logic
     if (metric == METRIC_HEAP_SIZE || metric == METRIC_STACK_DEPTH) {
@@ -53,6 +64,8 @@ void recordMetric(WaliaMetric metric, uint64_t value) {
 }
 
 void exportMetrics() {
+    if (!telemetryEnabled) return;
+
     printf("\n# WALIA TELEMETRY EXPORT\n");
     printf("# Generated at: %ld\n", (long)time(NULL));
 

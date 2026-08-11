@@ -9,6 +9,7 @@
 #define WALIA_HEAP_FILE "walia.state"
 #define WALIA_HEAP_SIZE (128 * 1024 * 1024) // 128 MB Persistent Heap
 #define CARD_SIZE 512                       // Bytes per card for the Write Barrier
+#define WALIA_ALLOC_ALIGNMENT 64            // Obj headers are cache-line aligned
 
 // ==========================================
 // MEMORY GROWTH MACROS

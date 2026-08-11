@@ -87,10 +87,16 @@ static char* readFile(const char* path) {
 }
 
 static void runWalia() {
-    // 1. PHYSICAL CALIBRATION
+    // 1. PERSISTENT SUBSTRATE BOOT
+    // The Oracle, tooling registries, VM objects, and database layers use the
+    // sovereign allocator. Establish the mapped heap and persistent root table
+    // before any allocator-backed subsystem is initialized.
+    walia_boot();
+
+    // 2. PHYSICAL CALIBRATION
     sys_hardware_probe_init(); // Detects AVX-512 / Cores
 
-    // 2. INTELLIGENCE BOOT
+    // 3. INTELLIGENCE BOOT
     walia_ledger_init();
     walia_registry_init();
     walia_history_init();
@@ -118,7 +124,17 @@ static void runWalia() {
     
     Chunk chunk;
     initChunk(&chunk);
-    if (!compile(statements, stmtCount, &chunk)) exit(EXIT_COMPILE_ERROR);
+    if (!compile(statements, stmtCount, &chunk)) {
+        for (int i = 0; i < stmtCount; i++) freeStmt(statements[i]);
+        free(source);
+        exit(EXIT_COMPILE_ERROR);
+    }
+
+    // The compiler has copied the bytecode and constants it needs. Release
+    // parser-owned containers before VM startup so source execution does not
+    // retain temporary libc allocations.
+    for (int i = 0; i < stmtCount; i++) freeStmt(statements[i]);
+    free(source);
 
     // 5. SUBSTRATE FUSION
     initVM(); 
@@ -150,7 +166,11 @@ static void runWalia() {
 
     // 7. SHUTDOWN
     walia_oracle_generate_manual();
-    freeVM(); 
+    if (config.telemetry) exportMetrics();
+    if (global_dispatcher.threadCount > 0) {
+        db_dispatch_shutdown(&global_dispatcher);
+    }
+    freeVM();
     db_pager_close(global_pager);
     if (config.nexusMode) walia_nexus_stop();
 }
@@ -173,6 +193,9 @@ int main(int argc, char* argv[]) {
             if (config.path == NULL) config.path = argv[i];
         }
     }
+
+    initTelemetry();
+    setTelemetryEnabled(config.telemetry);
 
     if (config.path != NULL) runWalia();
     else walia_repl_start();

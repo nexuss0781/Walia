@@ -13,20 +13,31 @@
 // The Superblock lives at the very start of the mapped heap.
 static WaliaSuperblock* superblock = NULL;
 
+// Boot is process-wide. Re-mapping the heap a second time would invalidate
+// allocator-backed objects created by the compiler, tooling, or VM.
+static bool persistenceBooted = false;
+extern uint8_t* heapStart;
+
 // ==========================================
 // BOOT & RESUME LOGIC
 // ==========================================
 
 bool walia_boot() {
+    // Idempotence is required because both the top-level runtime and VM
+    // initialization may request the persistence service.
+    if (persistenceBooted && heapStart != NULL && superblock != NULL) {
+        return true;
+    }
+
     // 1. Initialize the low-level Persistent Heap (mmap)
     // This provides us with the 'heapStart' pointer.
     initPersistentHeap();
 
     // 2. Map the Superblock to the very beginning of the heap
     // We assume memory.c provides the base address.
-    // (Note: In production, we'd extern heapStart or provide a getter)
-    extern uint8_t* heapStart; 
+    // (Note: memory.c owns the mapped heap base.)
     superblock = (WaliaSuperblock*)heapStart;
+    persistenceBooted = true;
 
     // 3. Check for "Warm Resume"
     if (superblock->magic == WALIA_MAGIC) {
