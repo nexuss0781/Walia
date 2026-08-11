@@ -400,6 +400,7 @@ Stmt* declaration() {
         Token name = parser.current; advance();
         consume(TOKEN_LEFT_PAREN, "Expect '('.");
         consume(TOKEN_RIGHT_PAREN, "Expect ')'.");
+        consume(TOKEN_LEFT_BRACE, "Expect '{' before function body.");
         return newFunctionStmt(name, 0, NULL, block(), false);
     }
 

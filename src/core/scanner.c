@@ -25,7 +25,7 @@ static bool match(char expected) {
 }
 
 static Token makeToken(TokenType type) {
-  Token token;
+  Token token = {0};
   token.type = type;
   token.start = scanner.start;
   token.length = (int)(scanner.current - scanner.start);
@@ -34,7 +34,7 @@ static Token makeToken(TokenType type) {
 }
 
 static Token errorToken(const char* message) {
-  Token token;
+  Token token = {0};
   token.type = TOKEN_ERROR;
   token.start = message;
   token.length = (int)strlen(message);

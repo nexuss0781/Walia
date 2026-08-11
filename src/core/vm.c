@@ -11,6 +11,7 @@
 #include "object.h"
 #include "table.h"
 #include "../persistence.h"
+#include "../telemetry.h"
 #include "sys_watchdog.h"
 #include "../effect.h"
 #include "hash.h"
@@ -191,7 +192,7 @@ static InterpretResult run() {
     // In single-core genesis, this is 0. In SMP, it's read from APIC.
     int core_id = 0; 
 
-    #define READ_INST()     (*frame->ip++)
+    #define READ_INST()     (recordMetric(METRIC_INST_COUNT, 1), *frame->ip++)
     #define R(idx)          (frame->slots[idx])
     #define TRIGGER_RIPPLE(reg) if (walia_is_entangled(reg)) { walia_ripple_trigger(reg); }
 
@@ -275,7 +276,7 @@ static InterpretResult run() {
             DISPATCH();
         }
         CASE(OP_CALL)       { Instruction inst = READ_INST(); int dest = GET_A(inst); Value callee = R(GET_B(inst)); int argCount = GET_C(inst); if (IS_CLOSURE(callee)) { ObjFunction* func = AS_CLOSURE(callee)->function; func->callCount++; if (func->callCount > 1024 && func->nativeThunk == NULL) func->nativeThunk = walia_jit_tier2_compile(func); if (func->nativeThunk != NULL) { R(dest) = walia_jit_tier2_execute(func->nativeThunk, argCount, &R(GET_B(inst) + 1)); TRIGGER_RIPPLE(dest); DISPATCH(); } if (vm.frameCount == FRAMES_MAX) { runtimeError("Stack overflow."); return INTERPRET_RUNTIME_ERROR; } CallFrame* newFrame = &vm.frames[vm.frameCount++]; newFrame->closure = AS_CLOSURE(callee); newFrame->ip = newFrame->closure->function->chunk.code; newFrame->slots = &R(GET_B(inst) + 1); newFrame->returnToReg = dest; frame = newFrame; DISPATCH(); } if (IS_NATIVE(callee)) { R(dest) = AS_NATIVE(callee)(argCount, &R(GET_B(inst) + 1)); TRIGGER_RIPPLE(dest); DISPATCH(); } if (IS_CLASS(callee)) { R(dest) = OBJ_VAL(newInstance(AS_CLASS(callee))); DISPATCH(); } return INTERPRET_RUNTIME_ERROR; }
-        CASE(OP_RETURN)     { Instruction inst = READ_INST(); Value result = R(GET_A(inst)); int destReg = frame->returnToReg; closeUpvalues(frame->slots); vm.frameCount--; if (vm.frameCount == 0) return INTERPRET_OK; frame = &vm.frames[vm.frameCount - 1]; R(destReg) = result; TRIGGER_RIPPLE(destReg); DISPATCH(); }
+        CASE(OP_RETURN)     { Instruction inst = READ_INST(); Value result = R(GET_A(inst)); int destReg = frame->returnToReg; closeUpvalues(frame->slots); vm.frameCount--; recordMetric(METRIC_STACK_DEPTH, (uint64_t)vm.frameCount); if (vm.frameCount == 0) return INTERPRET_OK; frame = &vm.frames[vm.frameCount - 1]; R(destReg) = result; TRIGGER_RIPPLE(destReg); DISPATCH(); }
         CASE(OP_CLOSURE)    { Instruction inst = READ_INST(); int dest = GET_A(inst); ObjFunction* func = AS_FUNCTION(frame->closure->function->chunk.constants.values[GET_BC(inst)]); ObjClosure* closure = newClosure(func); R(dest) = OBJ_VAL(closure); for (int i = 0; i < closure->upvalueCount; i++) { Instruction upInst = READ_INST(); int isLocal = GET_A(upInst); int index = GET_BC(upInst); if (isLocal) closure->upvalues[i] = captureUpvalue(frame->slots + index); else closure->upvalues[i] = frame->closure->upvalues[index]; } DISPATCH(); }
         CASE(OP_GET_UPVALUE) { Instruction inst = READ_INST(); int a = GET_A(inst); R(a) = *frame->closure->upvalues[GET_BC(inst)]->location; TRIGGER_RIPPLE(a); DISPATCH(); }
         CASE(OP_SET_UPVALUE) { Instruction inst = READ_INST(); *frame->closure->upvalues[GET_BC(inst)]->location = R(GET_A(inst)); DISPATCH(); }
@@ -333,5 +334,6 @@ InterpretResult interpret(ObjFunction* function) {
     CallFrame* frame = &vm.frames[vm.frameCount++];
     frame->closure = closure; frame->ip = function->chunk.code;
     frame->slots = vm.stack; frame->returnToReg = 0;
+    recordMetric(METRIC_STACK_DEPTH, (uint64_t)vm.frameCount);
     return run();
 }

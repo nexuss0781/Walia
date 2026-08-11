@@ -8,6 +8,7 @@
 #include "vm.h"
 #include "table.h"
 #include "../effect.h"
+#include "../telemetry.h"
 
 void markObject(struct Obj* object) {
     if (object == NULL || object->isMarked) return;
@@ -73,6 +74,7 @@ static void sweep() {
 }
 
 void collectGarbage() {
+    recordMetric(METRIC_GC_COUNT, 1);
     for (Value* slot = vm.stack; slot < vm.stackTop; slot++) markValue(*slot);
     for (int i = 0; i < vm.frameCount; i++) markObject((struct Obj*)vm.frames[i].closure);
     for (ObjUpvalue* uv = vm.openUpvalues; uv != NULL; uv = uv->next) markObject((struct Obj*)uv);

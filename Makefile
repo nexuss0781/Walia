@@ -37,7 +37,7 @@ endif
 
 # 2. ARCHITECTURE-SPECIFIC OPTIMIZATION (UFO SPEED)
 ARCH := $(shell uname -m)
-CFLAGS := -I$(SRC_DIR) -Iinclude -Iwaliaos/include -Wall -Wextra -std=c99 -D_POSIX_C_SOURCE=200809L
+CFLAGS := -I. -I$(SRC_DIR) -Iinclude -Iwaliaos/include -Wall -Wextra -std=c99 -D_POSIX_C_SOURCE=200809L
 
 # Optimization Level 3 + Link Time Optimization (LTO)
 CFLAGS += -O3 -flto -fno-strict-aliasing
@@ -55,7 +55,7 @@ endif
 LDFLAGS := -lm -lpthread -flto
 
 # 4. BUILD RULES
-.PHONY: all clean install uninstall test debug
+.PHONY: all clean install uninstall test debug benchmark
 
 all: $(BIN)
 	@echo ">> Walia: Sovereign Binary compiled for $(ARCH) successfully."
@@ -85,6 +85,9 @@ uninstall:
 test: $(BIN)
 	@./$(BIN) --test tests/core_suite.wal
 
+benchmark: $(BIN)
+	@./scripts/phase0_benchmark.sh
+
 debug: CFLAGS += -g -DDEBUG_TRACE_EXECUTION -DDEBUG_PRINT_CODE
 debug: clean all
 	@echo ">> Walia: Debug build complete with verbose tracing."
@@ -99,6 +102,8 @@ help:
 	@echo "Usage:"
 	@echo "  make            Build optimized binary"
 	@echo "  make install    Install to system (requires sudo/root)"
-	@echo "  make test       Run integrated Walia test suite"
+		@echo "  make test       Run integrated Walia test suite"
+	@echo "  make benchmark  Measure build, test, and telemetry baselines"
+
 	@echo "  make clean      Remove build files"
 	@echo "  make debug      Build with full diagnostic tracing"
